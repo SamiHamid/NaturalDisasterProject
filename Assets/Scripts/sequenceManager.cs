@@ -11,13 +11,24 @@ public class sequenceManager : MonoBehaviour {
 	public bool _shakeCamera; // set to private after testing
 	private float _shakeStartTime;
 	public float _shakeDuration;
-	public float _shakeMaxMovement;
+	//public float _shakeMaxMovement;
+
+	// Audio for the TV
+	private AudioSource _tvAudioSource;
+	public AudioClip getRedCube;
+	public AudioClip getBlueCube;
+	public AudioClip getGreenCube;
+	public AudioClip goodJob;
+	public AudioClip niceWork;
+	public AudioClip wow;
 
 	void Start () {
 		_tvText = GameObject.Find("Dynamic GUI/TV Text").GetComponent<Text>();
 		_timerText = GameObject.Find("Dynamic GUI/Timer Text").GetComponent<Text>();
+		_tvAudioSource = GameObject.Find("Sequence Manager/TV Audio Source").GetComponent<AudioSource>();
+
 		StartCoroutine(PackRedCube());
-	}
+	} // end of Start()
 	
 
 	void Update () {
@@ -32,10 +43,14 @@ public class sequenceManager : MonoBehaviour {
 
 	public void NewItemCollected (string itemName) {
 		if (_tvText.text == "red cube" && itemName == "red cube") {
+			_tvAudioSource.clip = goodJob;
+			_tvAudioSource.Play();
 			StartCoroutine(PackBlueCube());
 		}
 
 		if (_tvText.text == "blue cube" && itemName == "blue cube") {
+			_tvAudioSource.clip = niceWork;
+			_tvAudioSource.Play();
 			StartCoroutine(PackGreenCube());
 		}
 
@@ -43,29 +58,36 @@ public class sequenceManager : MonoBehaviour {
 			_tvText.text = "go under table";
 			_shakeCamera = true;
 			_shakeStartTime = Time.time;
+			_tvAudioSource.clip = wow;
+			_tvAudioSource.Play();
 			gameObject.GetComponent<AudioSource>().Play();
 		}
 	}
 
 	IEnumerator PackRedCube () {
 		_tvText.text = "red cube";
-		yield return null;
+		yield return new WaitForSeconds(1);
+		_tvAudioSource.clip = getRedCube;
+		_tvAudioSource.Play();
 	}
 
 	IEnumerator PackBlueCube () {
 		_tvText.text = "blue cube";
-		yield return null;
+		yield return new WaitForSeconds(1);
+		_tvAudioSource.clip = getBlueCube;
+		_tvAudioSource.Play();
 	}
 
 	IEnumerator PackGreenCube () {
 		_tvText.text = "green cube";
-		yield return null;
+		yield return new WaitForSeconds(1);
+		_tvAudioSource.clip = getGreenCube;
+		_tvAudioSource.Play();
 	}
 
 	private void ShakeCamera () {
 
 		// add some equation that converts shake magnitude to a parabola
-
 		float _newX = _cameraToShake.position.x + Random.Range(-0.01f, 0.01f);
 		_cameraToShake.position = new Vector3 (_newX, _cameraToShake.position.y, _cameraToShake.position.z);
 
