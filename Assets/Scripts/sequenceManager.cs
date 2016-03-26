@@ -12,6 +12,7 @@ public class sequenceManager : MonoBehaviour {
 	private float _shakeStartTime;
 	public float _shakeDuration;
 	//public float _shakeMaxMovement;
+	private ParticleSystem _ceilingDustPfx;
 
 	// Audio for the TV
 	private AudioSource _tvAudioSource;
@@ -26,6 +27,7 @@ public class sequenceManager : MonoBehaviour {
 		_tvText = GameObject.Find("Dynamic GUI/TV Text").GetComponent<Text>();
 		_timerText = GameObject.Find("Dynamic GUI/Timer Text").GetComponent<Text>();
 		_tvAudioSource = GameObject.Find("Sequence Manager/TV Audio Source").GetComponent<AudioSource>();
+		_ceilingDustPfx = GameObject.Find("Ceiling Dust PFX").GetComponent<ParticleSystem>();
 
 		StartCoroutine(PackRedCube());
 	} // end of Start()
@@ -61,6 +63,7 @@ public class sequenceManager : MonoBehaviour {
 			_tvAudioSource.clip = wow;
 			_tvAudioSource.Play();
 			gameObject.GetComponent<AudioSource>().Play();
+			_ceilingDustPfx.Play();
 		}
 	}
 
@@ -93,6 +96,7 @@ public class sequenceManager : MonoBehaviour {
 
 		if (Time.time > _shakeStartTime + _shakeDuration) {
 			_shakeCamera = false;
+			_ceilingDustPfx.Stop();
 		}
 	}
 }
