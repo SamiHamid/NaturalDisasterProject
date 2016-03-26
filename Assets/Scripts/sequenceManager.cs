@@ -12,7 +12,13 @@ public class sequenceManager : MonoBehaviour {
 	private float _shakeStartTime;
 	public float _shakeDuration;
 	//public float _shakeMaxMovement;
+
+	// special FX during the quake
 	private ParticleSystem _ceilingDustPfx;
+	private GameObject _lightSparks1;
+	private GameObject _lightSparks2;
+	private GameObject _ceilingLight1;
+	private bool _light1dead;
 
 	// Audio for the TV
 	private AudioSource _tvAudioSource;
@@ -28,6 +34,11 @@ public class sequenceManager : MonoBehaviour {
 		_timerText = GameObject.Find("Dynamic GUI/Timer Text").GetComponent<Text>();
 		_tvAudioSource = GameObject.Find("Sequence Manager/TV Audio Source").GetComponent<AudioSource>();
 		_ceilingDustPfx = GameObject.Find("Ceiling Dust PFX").GetComponent<ParticleSystem>();
+		_lightSparks1 = GameObject.Find("Light Sparks 1");
+		_lightSparks1.SetActive(false);
+		_lightSparks2 = GameObject.Find("Light Sparks 2");
+		_lightSparks2.SetActive(false);
+		_ceilingLight1 = GameObject.Find("Spotlight 1");
 
 		StartCoroutine(PackRedCube());
 	} // end of Start()
@@ -88,15 +99,27 @@ public class sequenceManager : MonoBehaviour {
 		_tvAudioSource.Play();
 	}
 
+	IEnumerator KillLights1 () {
+		_light1dead = true;
+		_lightSparks1.SetActive(true);
+		_ceilingLight1.SetActive(false);
+		yield return new WaitForSeconds(0.1f);
+		_lightSparks2.SetActive(true);
+	}
+
 	private void ShakeCamera () {
 
 		// add some equation that converts shake magnitude to a parabola
 		float _newX = _cameraToShake.position.x + Random.Range(-0.01f, 0.01f);
 		_cameraToShake.position = new Vector3 (_newX, _cameraToShake.position.y, _cameraToShake.position.z);
 
+		if (Time.time > _shakeStartTime + 4 && _light1dead == false) {
+			StartCoroutine(KillLights1());
+		}
+
 		if (Time.time > _shakeStartTime + _shakeDuration) {
 			_shakeCamera = false;
-			_ceilingDustPfx.Stop();
+			//_ceilingDustPfx.Stop();												// technically not necessary since PFX only last 8 seconds
 		}
 	}
 }
