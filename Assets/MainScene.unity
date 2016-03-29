@@ -4537,7 +4537,7 @@ GameObject:
   - 114: {fileID: 436014945}
   - 114: {fileID: 436014944}
   m_Layer: 0
-  m_Name: frist aid book
+  m_Name: first aid book
   m_TagString: FirstAidItem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15880,7 +15880,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: e804376eb03294ddebec213edc50c2c8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c854f1d812ef9404eaafbf49f63debff, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -16970,20 +16970,25 @@ MonoBehaviour:
   _cameraToShake: {fileID: 134112854}
   _shakeCamera: 0
   _shakeDuration: 12
-  getRedCube: {fileID: 8300000, guid: 364e5412e62024cb4b18cd1c096f07fb, type: 3}
-  getBlueCube: {fileID: 8300000, guid: 615ebd20c346c4f79853bc71ce762a35, type: 3}
-  getGreenCube: {fileID: 8300000, guid: 39d22e9aa86c2421698c414bfe155a44, type: 3}
-  goodJob: {fileID: 8300000, guid: cd64877eae0db491d8ba715e79522e22, type: 3}
-  niceWork: {fileID: 8300000, guid: da763311a68d74dd7a96fc216987033f, type: 3}
-  wow: {fileID: 8300000, guid: 6253066654aaf412bbc741d5bf0078c1, type: 3}
-  alcoholWipes: {fileID: 0}
-  bandages: {fileID: 0}
-  firstAidBook: {fileID: 0}
-  gasMask: {fileID: 0}
-  rollBandage: {fileID: 0}
-  safetyPin: {fileID: 0}
-  scissors: {fileID: 0}
-  triangularBandage: {fileID: 0}
+  warning: {fileID: 8300000, guid: f9dd57630a00846c28e2aefa4a50e214, type: 3}
+  intro: {fileID: 8300000, guid: fc8d34057f0844a65a41d3de95b12db0, type: 3}
+  alcoholWipes: {fileID: 8300000, guid: e831b31fd2b094914994e6ab7ee9238b, type: 3}
+  bandages: {fileID: 8300000, guid: d0d5a9ea4251746c78882c983ae31f95, type: 3}
+  firstAidBook: {fileID: 8300000, guid: 6a7f3c94e8d4d4ba49c84cd9f7a4a99c, type: 3}
+  gasMask: {fileID: 8300000, guid: ff8d80fbe50224960a49c3bb698f4e1b, type: 3}
+  rollBandage: {fileID: 8300000, guid: 34abdfb32d87b4eb6abbb2078ae08cc4, type: 3}
+  safetyPin: {fileID: 8300000, guid: d04df8806895042f48385ab51b59b52f, type: 3}
+  scissors: {fileID: 8300000, guid: 5f4673839d33b484183e9ca9bf527689, type: 3}
+  triangularBandage: {fileID: 8300000, guid: 7bc4bfda9282e4008a790b5035dc13c8, type: 3}
+  alcoholWipesImg: {fileID: 2800000, guid: 091642ded88ac4871a8a7dc3aa22463d, type: 3}
+  bandagesImg: {fileID: 2800000, guid: 76756e7b96f9349c3b79d4b92fb6f2ea, type: 3}
+  firstAidBookImg: {fileID: 2800000, guid: 52845730749f044afaacdcaea24f776a, type: 3}
+  gasMaskImg: {fileID: 2800000, guid: e804376eb03294ddebec213edc50c2c8, type: 3}
+  rollBandageImg: {fileID: 2800000, guid: fd5566d122c13419aab310f43bd1895b, type: 3}
+  safetyPinImg: {fileID: 2800000, guid: ba1a7caf3fac543919d0bc6d29e008f5, type: 3}
+  scissorsImg: {fileID: 2800000, guid: 62549718d56e84f7187710c07505e2bf, type: 3}
+  triangularBandageImg: {fileID: 2800000, guid: 0a0641631b4fc4eb998c32c8cf420891,
+    type: 3}
 --- !u!1001 &1768104036
 Prefab:
   m_ObjectHideFlags: 0
@@ -19514,7 +19519,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: initial
+  m_Text: ur fukt, bro
 --- !u!222 &2002566978
 CanvasRenderer:
   m_ObjectHideFlags: 0

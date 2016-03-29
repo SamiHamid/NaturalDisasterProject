@@ -22,22 +22,26 @@ public class sequenceManager : MonoBehaviour {
 
 	// Audio for the TV
 	private AudioSource _tvAudioSource;
-	public AudioClip getRedCube;
-	public AudioClip getBlueCube;
-	public AudioClip getGreenCube;
-	public AudioClip goodJob;
-	public AudioClip niceWork;
-	public AudioClip wow;
+	public AudioClip warning;
+	public AudioClip intro;
+	public AudioClip alcoholWipes;
+	public AudioClip bandages;
+	public AudioClip firstAidBook;
+	public AudioClip gasMask;
+	public AudioClip rollBandage;
+	public AudioClip safetyPin;
+	public AudioClip scissors;
+	public AudioClip triangularBandage;
 
 	// Textures for the TV
-	public Texture2D alcoholWipes;
-	public Texture2D bandages;
-	public Texture2D firstAidBook;
-	public Texture2D gasMask;
-	public Texture2D rollBandage;
-	public Texture2D safetyPin;
-	public Texture2D scissors;
-	public Texture2D triangularBandage;
+	public Texture2D alcoholWipesImg;
+	public Texture2D bandagesImg;
+	public Texture2D firstAidBookImg;
+	public Texture2D gasMaskImg;
+	public Texture2D rollBandageImg;
+	public Texture2D safetyPinImg;
+	public Texture2D scissorsImg;
+	public Texture2D triangularBandageImg;
 
 	void Start () {
 		_tvText = GameObject.Find("Dynamic GUI/TV Text").GetComponent<Text>();
@@ -50,7 +54,7 @@ public class sequenceManager : MonoBehaviour {
 		_lightSparks2.SetActive(false);
 		_ceilingLight1 = GameObject.Find("Spotlight 1");
 
-		StartCoroutine(PackRedCube());
+		StartCoroutine(Intro());
 	} // end of Start()
 	
 
@@ -65,47 +69,112 @@ public class sequenceManager : MonoBehaviour {
 	}
 
 	public void NewItemCollected (string itemName) {
-		if (_tvText.text == "red cube" && itemName == "red cube") {
-			_tvAudioSource.clip = goodJob;
-			_tvAudioSource.Play();
-			StartCoroutine(PackBlueCube());
+		if (_tvText.text == "alcohol wipes" && itemName == "alcohol wipes") {
+			StartCoroutine(PackBandages());
 		}
 
-		if (_tvText.text == "blue cube" && itemName == "blue cube") {
-			_tvAudioSource.clip = niceWork;
-			_tvAudioSource.Play();
-			StartCoroutine(PackGreenCube());
+		if (_tvText.text == "bandages" && itemName == "bandages") {
+			StartCoroutine(PackFirstAidBook());
 		}
 
-		if (_tvText.text == "green cube" && itemName == "green cube") {
+		if (_tvText.text == "first aid book" && itemName == "first aid book") {
+			StartCoroutine(PackGasMask());
+		}
+
+		if (_tvText.text == "gas mask" && itemName == "gas mask") {
+			StartCoroutine(PackRollBandage());
+		}
+
+		if (_tvText.text == "roll bandage" && itemName == "roll bandage") {
+			StartCoroutine(PackSafetyPin());
+		}
+
+		if (_tvText.text == "safety pin" && itemName == "safety pin") {
+			StartCoroutine(PackScissors());
+		}
+
+		if (_tvText.text == "scissors" && itemName == "scissors") {
+			StartCoroutine(PackTriangularBandage());
+		}
+			
+
+		if (_tvText.text == "triangular bandage" && itemName == "triangular bandage") {
 			_tvText.text = "go under table";
 			_shakeCamera = true;
 			_shakeStartTime = Time.time;
-			_tvAudioSource.clip = wow;
 			_tvAudioSource.Play();
 			gameObject.GetComponent<AudioSource>().Play();
 			_ceilingDustPfx.Play();
 		}
 	}
 
-	IEnumerator PackRedCube () {
-		_tvText.text = "red cube";
+	IEnumerator Intro () {
+		_tvText.text = "WARNING!";
 		yield return new WaitForSeconds(1);
-		_tvAudioSource.clip = getRedCube;
+		_tvAudioSource.clip = warning;
+		_tvAudioSource.Play();
+		yield return new WaitForSeconds(warning.length);
+		_tvAudioSource.clip = intro;
+		_tvAudioSource.Play();
+		yield return new WaitForSeconds(intro.length);
+		StartCoroutine(PackAlcoholWipes());
+	}
+
+
+
+	IEnumerator PackAlcoholWipes () {
+		_tvText.text = "alcohol wipes";
+		yield return new WaitForSeconds(1);
+		_tvAudioSource.clip = alcoholWipes;
 		_tvAudioSource.Play();
 	}
 
-	IEnumerator PackBlueCube () {
-		_tvText.text = "blue cube";
+	IEnumerator PackBandages () {
+		_tvText.text = "bandages";
 		yield return new WaitForSeconds(1);
-		_tvAudioSource.clip = getBlueCube;
+		_tvAudioSource.clip = bandages;
 		_tvAudioSource.Play();
 	}
 
-	IEnumerator PackGreenCube () {
-		_tvText.text = "green cube";
+	IEnumerator PackFirstAidBook () {
+		_tvText.text = "first aid book";
 		yield return new WaitForSeconds(1);
-		_tvAudioSource.clip = getGreenCube;
+		_tvAudioSource.clip = firstAidBook;
+		_tvAudioSource.Play();
+	}
+
+	IEnumerator PackGasMask () {
+		_tvText.text = "gas mask";
+		yield return new WaitForSeconds(1);
+		_tvAudioSource.clip = gasMask;
+		_tvAudioSource.Play();
+	}
+
+	IEnumerator PackRollBandage () {
+		_tvText.text = "roll bandage";
+		yield return new WaitForSeconds(1);
+		_tvAudioSource.clip = rollBandage;
+		_tvAudioSource.Play();
+	}
+
+	IEnumerator PackSafetyPin () {
+		_tvText.text = "safety pin";
+		yield return new WaitForSeconds(1);
+		_tvAudioSource.clip = safetyPin;
+		_tvAudioSource.Play();
+	}
+
+	IEnumerator PackScissors () {
+		_tvText.text = "scissors";
+		yield return new WaitForSeconds(1);
+		_tvAudioSource.clip = scissors;
+		_tvAudioSource.Play();
+	}
+
+	IEnumerator PackTriangularBandage () {
+		_tvText.text = "triangular bandage";
+		yield return new WaitForSeconds(1);
+		_tvAudioSource.clip = triangularBandage;
 		_tvAudioSource.Play();
 	}
 
