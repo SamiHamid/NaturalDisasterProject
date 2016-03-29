@@ -11,6 +11,7 @@ public class sequenceManager : MonoBehaviour {
 	public bool _shakeCamera; // set to private after testing
 	private float _shakeStartTime;
 	public float _shakeDuration;
+	private SpriteRenderer _tvImage;
 	//public float _shakeMaxMovement;
 
 	// special FX during the quake
@@ -34,14 +35,14 @@ public class sequenceManager : MonoBehaviour {
 	public AudioClip triangularBandage;
 
 	// Textures for the TV
-	public Texture2D alcoholWipesImg;
-	public Texture2D bandagesImg;
-	public Texture2D firstAidBookImg;
-	public Texture2D gasMaskImg;
-	public Texture2D rollBandageImg;
-	public Texture2D safetyPinImg;
-	public Texture2D scissorsImg;
-	public Texture2D triangularBandageImg;
+	public Sprite alcoholWipesImg;
+	public Sprite bandagesImg;
+	public Sprite firstAidBookImg;
+	public Sprite gasMaskImg;
+	public Sprite rollBandageImg;
+	public Sprite safetyPinImg;
+	public Sprite scissorsImg;
+	public Sprite triangularBandageImg;
 
 	void Start () {
 		_tvText = GameObject.Find("Dynamic GUI/TV Text").GetComponent<Text>();
@@ -53,6 +54,7 @@ public class sequenceManager : MonoBehaviour {
 		_lightSparks2 = GameObject.Find("Light Sparks 2");
 		_lightSparks2.SetActive(false);
 		_ceilingLight1 = GameObject.Find("Spotlight 1");
+		_tvImage = GameObject.Find("Dynamic GUI/Sprite").GetComponent<SpriteRenderer>();
 
 		StartCoroutine(Intro());
 	} // end of Start()
@@ -124,6 +126,7 @@ public class sequenceManager : MonoBehaviour {
 
 	IEnumerator PackAlcoholWipes () {
 		_tvText.text = "alcohol wipes";
+		_tvImage.sprite = alcoholWipesImg;
 		yield return new WaitForSeconds(1);
 		_tvAudioSource.clip = alcoholWipes;
 		_tvAudioSource.Play();
@@ -131,6 +134,7 @@ public class sequenceManager : MonoBehaviour {
 
 	IEnumerator PackBandages () {
 		_tvText.text = "bandages";
+		_tvImage.sprite = bandagesImg;
 		yield return new WaitForSeconds(1);
 		_tvAudioSource.clip = bandages;
 		_tvAudioSource.Play();
@@ -138,6 +142,7 @@ public class sequenceManager : MonoBehaviour {
 
 	IEnumerator PackFirstAidBook () {
 		_tvText.text = "first aid book";
+		_tvImage.sprite = firstAidBookImg;
 		yield return new WaitForSeconds(1);
 		_tvAudioSource.clip = firstAidBook;
 		_tvAudioSource.Play();
@@ -145,6 +150,7 @@ public class sequenceManager : MonoBehaviour {
 
 	IEnumerator PackGasMask () {
 		_tvText.text = "gas mask";
+		_tvImage.sprite = gasMaskImg;
 		yield return new WaitForSeconds(1);
 		_tvAudioSource.clip = gasMask;
 		_tvAudioSource.Play();
@@ -152,6 +158,7 @@ public class sequenceManager : MonoBehaviour {
 
 	IEnumerator PackRollBandage () {
 		_tvText.text = "roll bandage";
+		_tvImage.sprite = rollBandageImg;
 		yield return new WaitForSeconds(1);
 		_tvAudioSource.clip = rollBandage;
 		_tvAudioSource.Play();
@@ -159,6 +166,7 @@ public class sequenceManager : MonoBehaviour {
 
 	IEnumerator PackSafetyPin () {
 		_tvText.text = "safety pin";
+		_tvImage.sprite = safetyPinImg;
 		yield return new WaitForSeconds(1);
 		_tvAudioSource.clip = safetyPin;
 		_tvAudioSource.Play();
@@ -166,6 +174,7 @@ public class sequenceManager : MonoBehaviour {
 
 	IEnumerator PackScissors () {
 		_tvText.text = "scissors";
+		_tvImage.sprite = scissorsImg;
 		yield return new WaitForSeconds(1);
 		_tvAudioSource.clip = scissors;
 		_tvAudioSource.Play();
@@ -173,6 +182,7 @@ public class sequenceManager : MonoBehaviour {
 
 	IEnumerator PackTriangularBandage () {
 		_tvText.text = "triangular bandage";
+		_tvImage.sprite = triangularBandageImg;
 		yield return new WaitForSeconds(1);
 		_tvAudioSource.clip = triangularBandage;
 		_tvAudioSource.Play();

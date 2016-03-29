@@ -16980,14 +16980,14 @@ MonoBehaviour:
   safetyPin: {fileID: 8300000, guid: d04df8806895042f48385ab51b59b52f, type: 3}
   scissors: {fileID: 8300000, guid: 5f4673839d33b484183e9ca9bf527689, type: 3}
   triangularBandage: {fileID: 8300000, guid: 7bc4bfda9282e4008a790b5035dc13c8, type: 3}
-  alcoholWipesImg: {fileID: 2800000, guid: 091642ded88ac4871a8a7dc3aa22463d, type: 3}
-  bandagesImg: {fileID: 2800000, guid: 76756e7b96f9349c3b79d4b92fb6f2ea, type: 3}
-  firstAidBookImg: {fileID: 2800000, guid: 52845730749f044afaacdcaea24f776a, type: 3}
-  gasMaskImg: {fileID: 2800000, guid: e804376eb03294ddebec213edc50c2c8, type: 3}
-  rollBandageImg: {fileID: 2800000, guid: fd5566d122c13419aab310f43bd1895b, type: 3}
-  safetyPinImg: {fileID: 2800000, guid: ba1a7caf3fac543919d0bc6d29e008f5, type: 3}
-  scissorsImg: {fileID: 2800000, guid: 62549718d56e84f7187710c07505e2bf, type: 3}
-  triangularBandageImg: {fileID: 2800000, guid: 0a0641631b4fc4eb998c32c8cf420891,
+  alcoholWipesImg: {fileID: 21300000, guid: 091642ded88ac4871a8a7dc3aa22463d, type: 3}
+  bandagesImg: {fileID: 21300000, guid: 76756e7b96f9349c3b79d4b92fb6f2ea, type: 3}
+  firstAidBookImg: {fileID: 21300000, guid: 52845730749f044afaacdcaea24f776a, type: 3}
+  gasMaskImg: {fileID: 21300000, guid: e804376eb03294ddebec213edc50c2c8, type: 3}
+  rollBandageImg: {fileID: 21300000, guid: fd5566d122c13419aab310f43bd1895b, type: 3}
+  safetyPinImg: {fileID: 21300000, guid: ba1a7caf3fac543919d0bc6d29e008f5, type: 3}
+  scissorsImg: {fileID: 21300000, guid: 62549718d56e84f7187710c07505e2bf, type: 3}
+  triangularBandageImg: {fileID: 21300000, guid: 0a0641631b4fc4eb998c32c8cf420891,
     type: 3}
 --- !u!1001 &1768104036
 Prefab:
