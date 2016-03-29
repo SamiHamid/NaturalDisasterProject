@@ -29,6 +29,16 @@ public class sequenceManager : MonoBehaviour {
 	public AudioClip niceWork;
 	public AudioClip wow;
 
+	// Textures for the TV
+	public Texture2D alcoholWipes;
+	public Texture2D bandages;
+	public Texture2D firstAidBook;
+	public Texture2D gasMask;
+	public Texture2D rollBandage;
+	public Texture2D safetyPin;
+	public Texture2D scissors;
+	public Texture2D triangularBandage;
+
 	void Start () {
 		_tvText = GameObject.Find("Dynamic GUI/TV Text").GetComponent<Text>();
 		_timerText = GameObject.Find("Dynamic GUI/Timer Text").GetComponent<Text>();
