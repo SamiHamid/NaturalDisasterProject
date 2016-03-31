@@ -69,6 +69,12 @@ public class sequenceManager : MonoBehaviour {
 		if (_shakeCamera) {
 			ShakeCamera();
 		}
+
+		if (Input.GetKeyDown(KeyCode.Space))
+		{
+			DropCoverHold ();
+			Debug.Log("EARTHQUAKE");
+		}
 	}
 
 	public void NewItemCollected (string itemName) {

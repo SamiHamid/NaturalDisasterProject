@@ -16,4 +16,5 @@ Skybox Tips & Tricks
 
 - When resizing the skybox image Photoshop is trying to interpolate the edges of the blue sky areas which results in dirty edges being added. To prevent this you can duplicate the outer edge of each sky layer that borders on the black background two or three times and shift the duplicates into the black area to prevent the interpolated edges from being inside the used sky area.
 
-Copyright © 2015 Hexagon Star Softworks. All rights reserved. Redistribution of the source material without permission is not allowed.
+
+Copyright © 2015 Hexagon Star Softworks. All rights reserved. Redistribution of the source material without permission is not allowed.
