@@ -16989,6 +16989,7 @@ MonoBehaviour:
   scissorsImg: {fileID: 21300000, guid: 62549718d56e84f7187710c07505e2bf, type: 3}
   triangularBandageImg: {fileID: 21300000, guid: 0a0641631b4fc4eb998c32c8cf420891,
     type: 3}
+  dropCoverHoldImg: {fileID: 21300000, guid: fef29742263b04d5fad2e028354419c9, type: 3}
 --- !u!1001 &1768104036
 Prefab:
   m_ObjectHideFlags: 0
@@ -19519,7 +19520,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: ur fukt, bro
+  m_Text: 'earthquake
+
+'
 --- !u!222 &2002566978
 CanvasRenderer:
   m_ObjectHideFlags: 0

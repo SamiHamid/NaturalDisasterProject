@@ -43,6 +43,7 @@ public class sequenceManager : MonoBehaviour {
 	public Sprite safetyPinImg;
 	public Sprite scissorsImg;
 	public Sprite triangularBandageImg;
+	public Sprite dropCoverHoldImg;
 
 	void Start () {
 		_tvText = GameObject.Find("Dynamic GUI/TV Text").GetComponent<Text>();
@@ -101,13 +102,19 @@ public class sequenceManager : MonoBehaviour {
 			
 
 		if (_tvText.text == "triangular bandage" && itemName == "triangular bandage") {
-			_tvText.text = "go under table";
-			_shakeCamera = true;
-			_shakeStartTime = Time.time;
-			_tvAudioSource.Play();
-			gameObject.GetComponent<AudioSource>().Play();
-			_ceilingDustPfx.Play();
+			StartCoroutine(DropCoverHold());
 		}
+	}
+
+	IEnumerator DropCoverHold () {
+		_tvText.text = "go under table";
+		_tvImage.sprite = dropCoverHoldImg;
+		_shakeCamera = true;
+		_shakeStartTime = Time.time;
+		//_tvAudioSource.Play();
+		gameObject.GetComponent<AudioSource>().Play();
+		_ceilingDustPfx.Play();
+		yield return new WaitForSeconds(1);
 	}
 
 	IEnumerator Intro () {
