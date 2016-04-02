@@ -78,7 +78,6 @@ namespace NewtonVR
             LastRotations = new Quaternion[EstimationSamples];
             LastDeltas = new float[EstimationSamples];
             EstimationSampleIndex = 0;
-
             VisibilityLocked = false;
 
             SteamVR_Utils.Event.Listen("render_model_loaded", RenderModelLoaded);
