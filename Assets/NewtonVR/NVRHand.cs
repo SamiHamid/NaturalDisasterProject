@@ -18,6 +18,7 @@ namespace NewtonVR
         public bool UseButtonPressed = false;
 
         public Rigidbody Rigidbody;
+        public GameObject hand;
 
         [Tooltip("If you want to use something other than the standard SteamVR Controller models place the Prefab here. Otherwise we use steamvr models.")]
         public GameObject CustomModel;
@@ -87,6 +88,8 @@ namespace NewtonVR
         {
             if (Controller == null || CurrentHandState == HandState.Uninitialized)
                 return;
+
+            hand.SetActive(true);
 
             HoldButtonPressed = Controller.GetPress(HoldButton);
             HoldButtonDown = Controller.GetPressDown(HoldButton);
