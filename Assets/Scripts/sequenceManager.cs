@@ -89,6 +89,10 @@ public class sequenceManager : MonoBehaviour {
 			DropCoverHold ();
 			Debug.Log("EARTHQUAKE");
 		}
+
+		if (Input.GetKeyDown("space")) {
+			StartCoroutine(DropCoverHold());
+		}
 	}
 
 	public void NewItemCollected (string itemName) {
