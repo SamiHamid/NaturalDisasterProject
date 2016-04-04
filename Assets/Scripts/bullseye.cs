@@ -7,6 +7,7 @@ public class bullseye : MonoBehaviour {
 	public float delay;
 	private sequenceManager sequenceManager;
 	public int nextTarget;
+	//public AudioClip hitAudio;
 
 	// Use this for initialization
 	void Start () {
@@ -28,8 +29,8 @@ public class bullseye : MonoBehaviour {
 	}
 
 	void OnCollisionEnter (Collision collision) {
-		Debug.Log ("bullseye collision = " + collision);
 		if (collision.transform.name == "Hammer") {
+			collision.transform.GetComponent<AudioSource>().Play();
 			sequenceManager.NextHammerTarget(nextTarget);
 		}
 	}
