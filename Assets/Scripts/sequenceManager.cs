@@ -17,6 +17,8 @@ public class sequenceManager : MonoBehaviour {
 	//public float _shakeMaxMovement;
 	private bool checkItem;
 	private string itemName;
+    
+    public GameObject earthquake_controller;
 
 	// special FX during the quake
 	private ParticleSystem _ceilingDustPfx;
@@ -92,13 +94,14 @@ public class sequenceManager : MonoBehaviour {
 
 		if (Input.GetKeyDown(KeyCode.Space))
 		{
-			DropCoverHold ();
+            StopAllCoroutines();
+            StartCoroutine(DropCoverHold());
 			Debug.Log("EARTHQUAKE");
 		}
 
-		if (Input.GetKeyDown("space")) {
+		/*if (Input.GetKeyDown("space")) {
 			StartCoroutine(DropCoverHold());
-		}
+		}*/
 	}
 
 	void LateUpdate () {
@@ -186,6 +189,7 @@ public class sequenceManager : MonoBehaviour {
 	}
 
 	IEnumerator DropCoverHold () {
+        earthquake_controller.SetActive(true);
 		_tvText.text = "go under table";
 		_tvImage.sprite = dropCoverHoldImg;
 		_shakeCamera = true;
