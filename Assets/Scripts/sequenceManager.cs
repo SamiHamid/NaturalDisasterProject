@@ -8,10 +8,12 @@ public class sequenceManager : MonoBehaviour {
 	private Text _timerText;
 	private string _timeString;
 	public Transform _cameraToShake;
-	public bool _shakeCamera; // set to private after testing
+	private bool _shakeCamera;
 	private float _shakeStartTime;
 	public float _shakeDuration;
 	private SpriteRenderer _tvImage;
+	private int _itemsTotal = 8;				// these 2 will not be necessary
+	private int _itemsCollected;			// if timer is used to trigger next part of sequence (instead of completion of packing all items)
 	//public float _shakeMaxMovement;
 
 	// special FX during the quake
@@ -63,10 +65,12 @@ public class sequenceManager : MonoBehaviour {
 		_ceilingLight1 = GameObject.Find("Spotlight 1");
 		_tvImage = GameObject.Find("Dynamic GUI/Sprite").GetComponent<SpriteRenderer>();
 
+		// Find and deactivate all hammer targets.  Each will be activated later during the sequence.
 		_hammerTarget1 = GameObject.Find("Hammer Target 1");
 		_hammerTarget2 = GameObject.Find("Hammer Target 2");
 		_hammerTarget3 = GameObject.Find("Hammer Target 3");
 		_hammerTarget4 = GameObject.Find("Hammer Target 4");
+		//_hammerTarget1.SetActive(false);						leave this coded out until hammering is properly part of the sequence
 		_hammerTarget2.SetActive(false);
 		_hammerTarget3.SetActive(false);
 		_hammerTarget4.SetActive(false);
@@ -96,6 +100,12 @@ public class sequenceManager : MonoBehaviour {
 	}
 
 	public void NewItemCollected (string itemName) {
+		_itemsCollected ++;
+		if (_itemsCollected >= _itemsTotal) {
+			StartCoroutine(DropCoverHold());
+			return;
+		}
+
 		if (_tvText.text == "alcohol wipes" && itemName == "alcohol wipes") {
 			StartCoroutine(PackBandages());
 		}
@@ -128,6 +138,8 @@ public class sequenceManager : MonoBehaviour {
 		if (_tvText.text == "triangular bandage" && itemName == "triangular bandage") {
 			StartCoroutine(DropCoverHold());
 		}
+
+
 	}
 
 	IEnumerator DropCoverHold () {
