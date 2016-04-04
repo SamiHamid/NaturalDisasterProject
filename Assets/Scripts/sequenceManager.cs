@@ -45,6 +45,12 @@ public class sequenceManager : MonoBehaviour {
 	public Sprite triangularBandageImg;
 	public Sprite dropCoverHoldImg;
 
+	// Hammer Targets
+	private GameObject _hammerTarget1;
+	private GameObject _hammerTarget2;
+	private GameObject _hammerTarget3;
+	private GameObject _hammerTarget4;
+
 	void Start () {
 		_tvText = GameObject.Find("Dynamic GUI/TV Text").GetComponent<Text>();
 		_timerText = GameObject.Find("Dynamic GUI/Timer Text").GetComponent<Text>();
@@ -56,6 +62,14 @@ public class sequenceManager : MonoBehaviour {
 		_lightSparks2.SetActive(false);
 		_ceilingLight1 = GameObject.Find("Spotlight 1");
 		_tvImage = GameObject.Find("Dynamic GUI/Sprite").GetComponent<SpriteRenderer>();
+
+		_hammerTarget1 = GameObject.Find("Hammer Target 1");
+		_hammerTarget2 = GameObject.Find("Hammer Target 2");
+		_hammerTarget3 = GameObject.Find("Hammer Target 3");
+		_hammerTarget4 = GameObject.Find("Hammer Target 4");
+		_hammerTarget2.SetActive(false);
+		_hammerTarget3.SetActive(false);
+		_hammerTarget4.SetActive(false);
 
 		StartCoroutine(Intro());
 	} // end of Start()
@@ -222,6 +236,21 @@ public class sequenceManager : MonoBehaviour {
 		if (Time.time > _shakeStartTime + _shakeDuration) {
 			_shakeCamera = false;
 			//_ceilingDustPfx.Stop();												// technically not necessary since PFX only last 8 seconds
+		}
+	}
+
+	public void NextHammerTarget (int nextTarget) {
+		if (nextTarget == 2) {
+			_hammerTarget1.SetActive(false);
+			_hammerTarget2.SetActive(true);
+		} else if (nextTarget == 3) {
+			_hammerTarget2.SetActive(false);
+			_hammerTarget3.SetActive(true);
+		} else if (nextTarget == 4) {
+			_hammerTarget3.SetActive(false);
+			_hammerTarget4.SetActive(true);
+		} else if (nextTarget == 5) {
+			_hammerTarget4.SetActive(false);
 		}
 	}
 }
