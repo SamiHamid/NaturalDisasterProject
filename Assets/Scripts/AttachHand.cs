@@ -14,7 +14,7 @@ public class AttachHand : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (!hammerIsAttached && controller.gameObject.activeInHierarchy) {
-			transform.position = controller.position;
+			//transform.position = controller.position;
 			transform.rotation	= controller.rotation;
 			transform.SetParent(controller);
 			transform.Rotate(0,0,0);
