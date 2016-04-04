@@ -15,6 +15,8 @@ public class sequenceManager : MonoBehaviour {
 	private int _itemsTotal = 8;				// these 2 will not be necessary
 	private int _itemsCollected;			// if timer is used to trigger next part of sequence (instead of completion of packing all items)
 	//public float _shakeMaxMovement;
+	private bool checkItem;
+	private string itemName;
 
 	// special FX during the quake
 	private ParticleSystem _ceilingDustPfx;
@@ -99,23 +101,64 @@ public class sequenceManager : MonoBehaviour {
 		}
 	}
 
-	public void NewItemCollected (string itemName) {
+	void LateUpdate () {
+		if (checkItem) {
+			if (_tvText.text == itemName) {
+				if (GameObject.Find("bandages")) {
+					Debug.Log("found the bandages = " + GameObject.Find("bandages"));
+					StartCoroutine(PackBandages());
+				} else if (GameObject.Find("first aid book")) {
+					StartCoroutine(PackFirstAidBook());
+				} else if (GameObject.Find("gas mask")) {
+					StartCoroutine(PackGasMask());
+				} else if (GameObject.Find("roll bandage")) {
+					StartCoroutine(PackRollBandage());
+				} else if (GameObject.Find("safety pin")) {
+					StartCoroutine(PackSafetyPin());
+				} else if (GameObject.Find("scissors")) {
+					StartCoroutine(PackScissors());
+				} else if (GameObject.Find("triangular bandage")) {
+					StartCoroutine(PackTriangularBandage());
+				}
+			}
+
+			checkItem = false;
+		}
+	}
+
+	public void NewItemCollected (string itemNameImported) {
+		itemName = itemNameImported;
 		_itemsCollected ++;
 		if (_itemsCollected >= _itemsTotal) {
 			StartCoroutine(DropCoverHold());
 			return;
 		}
 
+		checkItem = true;
+
+
+
+		/*
+		DO NOT NEED THIS SEQUENCE ANY MORE.  FUNCTION HAS MOVED TO LATEUPDATE()
+
 		if (_tvText.text == "alcohol wipes" && itemName == "alcohol wipes") {
 			StartCoroutine(PackBandages());
 		}
 
 		if (_tvText.text == "bandages" && itemName == "bandages") {
-			StartCoroutine(PackFirstAidBook());
+			if (GameObject.Find("first aid book")) {
+				StartCoroutine(PackFirstAidBook());
+			} else {
+				StartCoroutine(PackGasMask());
+			}
 		}
 
 		if (_tvText.text == "first aid book" && itemName == "first aid book") {
-			StartCoroutine(PackGasMask());
+			if (GameObject.Find("gas mask")) {
+				StartCoroutine(PackGasMask());
+			} else {
+				StartCoroutine(PackRollBandage());
+			}
 		}
 
 		if (_tvText.text == "gas mask" && itemName == "gas mask") {
@@ -138,7 +181,7 @@ public class sequenceManager : MonoBehaviour {
 		if (_tvText.text == "triangular bandage" && itemName == "triangular bandage") {
 			StartCoroutine(DropCoverHold());
 		}
-
+		*/
 
 	}
 
