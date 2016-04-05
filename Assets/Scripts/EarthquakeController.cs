@@ -12,7 +12,7 @@ public class EarthquakeController : MonoBehaviour {
 	private AudioSource _rumbleAudiosource;
 
 	// camera shake effect
-	public Transform _cameraToShake;		// define this camera in the inspector
+	private Transform _cameraToShake;
 	private bool _shakeCamera;
 	private float _shakeStartTime;
 	public float _shakeDuration;
@@ -31,7 +31,7 @@ public class EarthquakeController : MonoBehaviour {
 		_lightSparks1.SetActive(false);
 		_lightSparks2.SetActive(false);
 
-		// Find the ACTIVE camera in the scene.
+		// Find the active camera in the scene.
 		if (GameObject.Find("[CameraRig]")) {
 			_cameraToShake = GameObject.Find("[CameraRig]/Camera (head)").transform;
 		} else {
@@ -47,7 +47,7 @@ public class EarthquakeController : MonoBehaviour {
 	}
 
 
-	public void StartQuake () {
+	public void StartQuake () {						// This function is called by sequenceManager.cs at the end of packing sequence, and also by spacebar.
 		StartCoroutine(QuakeSequence());
 	}
 
@@ -71,6 +71,11 @@ public class EarthquakeController : MonoBehaviour {
 		_ceilingDustPfx.Play();
 		yield return new WaitForSeconds(4.0f);
 		StartCoroutine(KillLights1());
+
+
+		//
+		// Sami, you can add in most of your effects here.
+		// 
 	}
 
 
