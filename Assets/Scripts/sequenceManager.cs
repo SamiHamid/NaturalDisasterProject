@@ -15,8 +15,8 @@ public class sequenceManager : MonoBehaviour {
 	private int _itemsTotal = 8;				// these 2 will not be necessary
 	private int _itemsCollected;			// if timer is used to trigger next part of sequence (instead of completion of packing all items)
 	//public float _shakeMaxMovement;
-	private bool checkItem;
-	private string itemName;
+	private bool _checkItem;
+	private string _itemName;
     
     public GameObject earthquake_controller;
 
@@ -74,11 +74,12 @@ public class sequenceManager : MonoBehaviour {
 		_hammerTarget2 = GameObject.Find("Hammer Target 2");
 		_hammerTarget3 = GameObject.Find("Hammer Target 3");
 		_hammerTarget4 = GameObject.Find("Hammer Target 4");
-		//_hammerTarget1.SetActive(false);						leave this coded out until hammering is properly part of the sequence
+		//_hammerTarget1.SetActive(false);						leave this coded-out until hammering is properly part of the sequence
 		_hammerTarget2.SetActive(false);
 		_hammerTarget3.SetActive(false);
 		_hammerTarget4.SetActive(false);
 
+		// Begin the game sequence
 		StartCoroutine(Intro());
 	} // end of Start()
 	
@@ -98,15 +99,11 @@ public class sequenceManager : MonoBehaviour {
             StartCoroutine(DropCoverHold());
 			Debug.Log("EARTHQUAKE");
 		}
-
-		/*if (Input.GetKeyDown("space")) {
-			StartCoroutine(DropCoverHold());
-		}*/
-	}
+	} // end of Update()
 
 	void LateUpdate () {
-		if (checkItem) {
-			if (_tvText.text == itemName) {
+		if (_checkItem) {
+			if (_tvText.text == _itemName) {
 				if (GameObject.Find("bandages")) {
 					Debug.Log("found the bandages = " + GameObject.Find("bandages"));
 					StartCoroutine(PackBandages());
@@ -124,68 +121,18 @@ public class sequenceManager : MonoBehaviour {
 					StartCoroutine(PackTriangularBandage());
 				}
 			}
-
-			checkItem = false;
+			_checkItem = false;
 		}
-	}
+	} // end of LateUpdate()
 
-	public void NewItemCollected (string itemNameImported) {
-		itemName = itemNameImported;
+	public void NewItemCollected (string _itemNameImported) {
+		_itemName = _itemNameImported;
 		_itemsCollected ++;
 		if (_itemsCollected >= _itemsTotal) {
 			StartCoroutine(DropCoverHold());
 			return;
 		}
-
-		checkItem = true;
-
-
-
-		/*
-		DO NOT NEED THIS SEQUENCE ANY MORE.  FUNCTION HAS MOVED TO LATEUPDATE()
-
-		if (_tvText.text == "alcohol wipes" && itemName == "alcohol wipes") {
-			StartCoroutine(PackBandages());
-		}
-
-		if (_tvText.text == "bandages" && itemName == "bandages") {
-			if (GameObject.Find("first aid book")) {
-				StartCoroutine(PackFirstAidBook());
-			} else {
-				StartCoroutine(PackGasMask());
-			}
-		}
-
-		if (_tvText.text == "first aid book" && itemName == "first aid book") {
-			if (GameObject.Find("gas mask")) {
-				StartCoroutine(PackGasMask());
-			} else {
-				StartCoroutine(PackRollBandage());
-			}
-		}
-
-		if (_tvText.text == "gas mask" && itemName == "gas mask") {
-			StartCoroutine(PackRollBandage());
-		}
-
-		if (_tvText.text == "roll bandage" && itemName == "roll bandage") {
-			StartCoroutine(PackSafetyPin());
-		}
-
-		if (_tvText.text == "safety pin" && itemName == "safety pin") {
-			StartCoroutine(PackScissors());
-		}
-
-		if (_tvText.text == "scissors" && itemName == "scissors") {
-			StartCoroutine(PackTriangularBandage());
-		}
-			
-
-		if (_tvText.text == "triangular bandage" && itemName == "triangular bandage") {
-			StartCoroutine(DropCoverHold());
-		}
-		*/
-
+		_checkItem = true;
 	}
 
 	IEnumerator DropCoverHold () {
