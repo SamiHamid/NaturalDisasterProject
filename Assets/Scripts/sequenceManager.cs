@@ -7,25 +7,12 @@ public class sequenceManager : MonoBehaviour {
 	private Text _tvText;
 	private Text _timerText;
 	private string _timeString;
-	public Transform _cameraToShake;
-	private bool _shakeCamera;
-	private float _shakeStartTime;
-	public float _shakeDuration;
 	private Renderer _tvImage;
 	private int _itemsTotal = 8;				// these 2 will not be necessary
-	private int _itemsCollected;			// if timer is used to trigger next part of sequence (instead of completion of packing all items)
-	//public float _shakeMaxMovement;
+	private int _itemsCollected;			    // if timer is used to trigger next part of sequence (instead of completion of packing all items)
 	private bool _checkItem;
 	private string _itemName;
-    
-    public GameObject earthquake_controller;
-
-	// special FX during the quake
-	private ParticleSystem _ceilingDustPfx;
-	private GameObject _lightSparks1;
-	private GameObject _lightSparks2;
-	private GameObject _ceilingLight1;
-	private bool _light1dead;
+    private EarthquakeController _earthquakeController;
 
 	// Audio for the TV
 	private AudioSource _tvAudioSource;
@@ -61,13 +48,8 @@ public class sequenceManager : MonoBehaviour {
 		_tvText = GameObject.Find("Dynamic GUI/TV Text").GetComponent<Text>();
 		_timerText = GameObject.Find("Dynamic GUI/Timer Text").GetComponent<Text>();
 		_tvAudioSource = GameObject.Find("Sequence Manager/TV Audio Source").GetComponent<AudioSource>();
-		_ceilingDustPfx = GameObject.Find("Ceiling Dust PFX").GetComponent<ParticleSystem>();
-		_lightSparks1 = GameObject.Find("Light Sparks 1");
-		_lightSparks1.SetActive(false);
-		_lightSparks2 = GameObject.Find("Light Sparks 2");
-		_lightSparks2.SetActive(false);
-		_ceilingLight1 = GameObject.Find("Spotlight 1");
 		_tvImage = GameObject.Find("Dynamic GUI/Image").GetComponent<Renderer>();
+		_earthquakeController = GameObject.Find("Earthquake Controller").GetComponent<EarthquakeController>();
 
 		// Find and deactivate all hammer targets.  Each will be activated later during the sequence.
 		_hammerTarget1 = GameObject.Find("Hammer Target 1");
@@ -89,23 +71,18 @@ public class sequenceManager : MonoBehaviour {
 		_timeString = string.Format("{0:0}:{1:00}", Mathf.Floor(Time.time/60), Time.time % 60);
 		_timerText.text = _timeString;
 
-		if (_shakeCamera) {
-			ShakeCamera();
-		}
-
 		if (Input.GetKeyDown(KeyCode.Space))
 		{
-            StopAllCoroutines();
-            StartCoroutine(DropCoverHold());
-			Debug.Log("EARTHQUAKE");
+            StopAllCoroutines();		//not sure if we need this or not
+			_earthquakeController.StartQuake();
 		}
 	} // end of Update()
+
 
 	void LateUpdate () {
 		if (_checkItem) {
 			if (_tvText.text == _itemName) {
 				if (GameObject.Find("bandages")) {
-					Debug.Log("found the bandages = " + GameObject.Find("bandages"));
 					StartCoroutine(PackBandages());
 				} else if (GameObject.Find("first aid book")) {
 					StartCoroutine(PackFirstAidBook());
@@ -125,6 +102,7 @@ public class sequenceManager : MonoBehaviour {
 		}
 	} // end of LateUpdate()
 
+
 	public void NewItemCollected (string _itemNameImported) {
 		_itemName = _itemNameImported;
 		_itemsCollected ++;
@@ -135,17 +113,7 @@ public class sequenceManager : MonoBehaviour {
 		_checkItem = true;
 	}
 
-	IEnumerator DropCoverHold () {
-        earthquake_controller.SetActive(true);
-		_tvText.text = "";
-		_tvImage.material = dropCoverHoldImg;
-		_shakeCamera = true;
-		_shakeStartTime = Time.time;
-		//_tvAudioSource.Play();
-		gameObject.GetComponent<AudioSource>().Play();
-		_ceilingDustPfx.Play();
-		yield return new WaitForSeconds(1);
-	}
+
 
 	IEnumerator Intro () {
 		_tvText.text = "WARNING!";
@@ -158,9 +126,7 @@ public class sequenceManager : MonoBehaviour {
 		yield return new WaitForSeconds(intro.length);
 		StartCoroutine(PackAlcoholWipes());
 	}
-
-
-
+		
 	IEnumerator PackAlcoholWipes () {
 		_tvText.text = "alcohol wipes";
 		_tvImage.material = alcoholWipesImg;
@@ -225,30 +191,13 @@ public class sequenceManager : MonoBehaviour {
 		_tvAudioSource.Play();
 	}
 
-	IEnumerator KillLights1 () {
-		_light1dead = true;
-		_lightSparks1.SetActive(true);
-		_ceilingLight1.SetActive(false);
-		yield return new WaitForSeconds(0.1f);
-		_lightSparks2.SetActive(true);
+	IEnumerator DropCoverHold () {
+		_tvText.text = "";
+		_tvImage.material = dropCoverHoldImg;
+		_earthquakeController.StartQuake();
+		yield return null;
 	}
-
-	private void ShakeCamera () {
-
-		// add some equation that converts shake magnitude to a parabola
-		float _newX = _cameraToShake.position.x + Random.Range(-0.01f, 0.01f);
-		_cameraToShake.position = new Vector3 (_newX, _cameraToShake.position.y, _cameraToShake.position.z);
-
-		if (Time.time > _shakeStartTime + 4 && _light1dead == false) {
-			StartCoroutine(KillLights1());
-		}
-
-		if (Time.time > _shakeStartTime + _shakeDuration) {
-			_shakeCamera = false;
-			//_ceilingDustPfx.Stop();												// technically not necessary since PFX only last 8 seconds
-		}
-	}
-
+		
 	public void NextHammerTarget (int nextTarget) {
 		if (nextTarget == 2) {
 			_hammerTarget1.SetActive(false);
