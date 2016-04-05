@@ -190,7 +190,7 @@ public class sequenceManager : MonoBehaviour {
 
 	IEnumerator DropCoverHold () {
         earthquake_controller.SetActive(true);
-		_tvText.text = "go under table";
+		_tvText.text = "";
 		_tvImage.material = dropCoverHoldImg;
 		_shakeCamera = true;
 		_shakeStartTime = Time.time;
