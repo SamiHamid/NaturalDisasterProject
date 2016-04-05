@@ -11,7 +11,7 @@ public class sequenceManager : MonoBehaviour {
 	private bool _shakeCamera;
 	private float _shakeStartTime;
 	public float _shakeDuration;
-	private SpriteRenderer _tvImage;
+	private Renderer _tvImage;
 	private int _itemsTotal = 8;				// these 2 will not be necessary
 	private int _itemsCollected;			// if timer is used to trigger next part of sequence (instead of completion of packing all items)
 	//public float _shakeMaxMovement;
@@ -41,15 +41,15 @@ public class sequenceManager : MonoBehaviour {
 	public AudioClip triangularBandage;
 
 	// Textures for the TV
-	public Sprite alcoholWipesImg;
-	public Sprite bandagesImg;
-	public Sprite firstAidBookImg;
-	public Sprite gasMaskImg;
-	public Sprite rollBandageImg;
-	public Sprite safetyPinImg;
-	public Sprite scissorsImg;
-	public Sprite triangularBandageImg;
-	public Sprite dropCoverHoldImg;
+	public Material alcoholWipesImg;
+	public Material bandagesImg;
+	public Material firstAidBookImg;
+	public Material gasMaskImg;
+	public Material rollBandageImg;
+	public Material safetyPinImg;
+	public Material scissorsImg;
+	public Material triangularBandageImg;
+	public Material dropCoverHoldImg;
 
 	// Hammer Targets
 	private GameObject _hammerTarget1;
@@ -67,7 +67,7 @@ public class sequenceManager : MonoBehaviour {
 		_lightSparks2 = GameObject.Find("Light Sparks 2");
 		_lightSparks2.SetActive(false);
 		_ceilingLight1 = GameObject.Find("Spotlight 1");
-		_tvImage = GameObject.Find("Dynamic GUI/Sprite").GetComponent<SpriteRenderer>();
+		_tvImage = GameObject.Find("Dynamic GUI/Image").GetComponent<Renderer>();
 
 		// Find and deactivate all hammer targets.  Each will be activated later during the sequence.
 		_hammerTarget1 = GameObject.Find("Hammer Target 1");
@@ -191,7 +191,7 @@ public class sequenceManager : MonoBehaviour {
 	IEnumerator DropCoverHold () {
         earthquake_controller.SetActive(true);
 		_tvText.text = "go under table";
-		_tvImage.sprite = dropCoverHoldImg;
+		_tvImage.material = dropCoverHoldImg;
 		_shakeCamera = true;
 		_shakeStartTime = Time.time;
 		//_tvAudioSource.Play();
@@ -216,7 +216,7 @@ public class sequenceManager : MonoBehaviour {
 
 	IEnumerator PackAlcoholWipes () {
 		_tvText.text = "alcohol wipes";
-		_tvImage.sprite = alcoholWipesImg;
+		_tvImage.material = alcoholWipesImg;
 		yield return new WaitForSeconds(1);
 		_tvAudioSource.clip = alcoholWipes;
 		_tvAudioSource.Play();
@@ -224,7 +224,7 @@ public class sequenceManager : MonoBehaviour {
 
 	IEnumerator PackBandages () {
 		_tvText.text = "bandages";
-		_tvImage.sprite = bandagesImg;
+		_tvImage.material = bandagesImg;
 		yield return new WaitForSeconds(1);
 		_tvAudioSource.clip = bandages;
 		_tvAudioSource.Play();
@@ -232,7 +232,7 @@ public class sequenceManager : MonoBehaviour {
 
 	IEnumerator PackFirstAidBook () {
 		_tvText.text = "first aid book";
-		_tvImage.sprite = firstAidBookImg;
+		_tvImage.material = firstAidBookImg;
 		yield return new WaitForSeconds(1);
 		_tvAudioSource.clip = firstAidBook;
 		_tvAudioSource.Play();
@@ -240,7 +240,7 @@ public class sequenceManager : MonoBehaviour {
 
 	IEnumerator PackGasMask () {
 		_tvText.text = "gas mask";
-		_tvImage.sprite = gasMaskImg;
+		_tvImage.material = gasMaskImg;
 		yield return new WaitForSeconds(1);
 		_tvAudioSource.clip = gasMask;
 		_tvAudioSource.Play();
@@ -248,7 +248,7 @@ public class sequenceManager : MonoBehaviour {
 
 	IEnumerator PackRollBandage () {
 		_tvText.text = "roll bandage";
-		_tvImage.sprite = rollBandageImg;
+		_tvImage.material = rollBandageImg;
 		yield return new WaitForSeconds(1);
 		_tvAudioSource.clip = rollBandage;
 		_tvAudioSource.Play();
@@ -256,7 +256,7 @@ public class sequenceManager : MonoBehaviour {
 
 	IEnumerator PackSafetyPin () {
 		_tvText.text = "safety pin";
-		_tvImage.sprite = safetyPinImg;
+		_tvImage.material = safetyPinImg;
 		yield return new WaitForSeconds(1);
 		_tvAudioSource.clip = safetyPin;
 		_tvAudioSource.Play();
@@ -264,7 +264,7 @@ public class sequenceManager : MonoBehaviour {
 
 	IEnumerator PackScissors () {
 		_tvText.text = "scissors";
-		_tvImage.sprite = scissorsImg;
+		_tvImage.material = scissorsImg;
 		yield return new WaitForSeconds(1);
 		_tvAudioSource.clip = scissors;
 		_tvAudioSource.Play();
@@ -272,7 +272,7 @@ public class sequenceManager : MonoBehaviour {
 
 	IEnumerator PackTriangularBandage () {
 		_tvText.text = "triangular bandage";
-		_tvImage.sprite = triangularBandageImg;
+		_tvImage.material = triangularBandageImg;
 		yield return new WaitForSeconds(1);
 		_tvAudioSource.clip = triangularBandage;
 		_tvAudioSource.Play();
