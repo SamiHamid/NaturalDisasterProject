@@ -10,6 +10,7 @@ public class EarthquakeController : MonoBehaviour {
 	private GameObject _ceilingLight1;
 	private bool _light1dead;
 	private AudioSource _rumbleAudiosource;
+	private AudioSource CitySiren;
 
 	// camera shake effect
 	private Transform _cameraToShake;
@@ -21,6 +22,10 @@ public class EarthquakeController : MonoBehaviour {
 
 	public GameObject DustBits;
 	public GameObject DustThick;
+	public GameObject BuildingSmoke1;
+	public GameObject BuildingSmoke2;
+	public GameObject BuildingSmoke3;
+	public GameObject BuildingSmoke4;
 
 
 	void Start () {
@@ -30,6 +35,7 @@ public class EarthquakeController : MonoBehaviour {
 		_lightSparks2 = GameObject.Find("Light Sparks 2");
 		_ceilingLight1 = GameObject.Find("Spotlight 1");
 		_rumbleAudiosource = GameObject.Find("Rumble AudioSource").GetComponent<AudioSource>();
+		CitySiren = GameObject.Find("CitySiren").GetComponent<AudioSource>();
 
 		// Deactivate some objects. (Activating these objects triggers their effect.)
 		_lightSparks1.SetActive(false);
@@ -54,7 +60,9 @@ public class EarthquakeController : MonoBehaviour {
 
 
 	public void StartQuake () {						// This function is called by sequenceManager.cs at the end of packing sequence, and also by spacebar.
-		StartCoroutine(QuakeSequence());
+
+		CitySiren.Play();
+		Invoke ("QuakeStarter", 10);				// Delayed Quake for 10 seconds so player can find table & hear siren
 	}
 
 
@@ -68,6 +76,10 @@ public class EarthquakeController : MonoBehaviour {
 		}
 	}
 
+	void QuakeStarter()
+	{
+		StartCoroutine(QuakeSequence());
+	}
 
 	IEnumerator QuakeSequence () {
 		_rumbleAudiosource.Play();
@@ -80,9 +92,15 @@ public class EarthquakeController : MonoBehaviour {
 		StartCoroutine(KillLights1());
 
 
-		//
+		// Particles
 		DustBits.SetActive(true);
 		DustThick.SetActive(true);
+		BuildingSmoke1.SetActive(true);
+		BuildingSmoke2.SetActive(true);
+		BuildingSmoke3.SetActive(true);
+		BuildingSmoke4.SetActive(true);
+
+		// Audio
 
 
 		// 
