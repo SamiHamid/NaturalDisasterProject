@@ -26,7 +26,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 492848}
   m_Layer: 0
-  m_Name: Success2
+  m_Name: Failure
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -80,7 +80,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 143482}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.55, y: 0.052459788, z: 10.41}
+  m_LocalPosition: {x: -10.686395, y: 1.625, z: 2.644}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 432096}
@@ -285,7 +285,7 @@ ParticleSystem:
         rgba: 743473152
       minMaxState: 2
     startSize:
-      scalar: 1
+      scalar: 0.5
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -301,7 +301,7 @@ ParticleSystem:
         serializedVersion: 2
         m_Curve:
         - time: 0
-          value: 0.5
+          value: 0.4
           inSlope: 0
           outSlope: 0
           tangentMode: 0
@@ -412,7 +412,7 @@ ParticleSystem:
     serializedVersion: 2
     enabled: 1
     type: 0
-    radius: 0.7498989
+    radius: 0.18720436
     angle: 25
     length: 5
     boxX: 35
@@ -1729,7 +1729,7 @@ ParticleSystem:
         rgba: 1079476341
       minMaxState: 2
     startSize:
-      scalar: 0.7
+      scalar: 0.3
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -1745,7 +1745,7 @@ ParticleSystem:
         serializedVersion: 2
         m_Curve:
         - time: 0
-          value: 0.71428573
+          value: 0.3333333
           inSlope: 0
           outSlope: 0
           tangentMode: 0
@@ -1856,7 +1856,7 @@ ParticleSystem:
     serializedVersion: 2
     enabled: 1
     type: 1
-    radius: 0.597023
+    radius: 0.20056963
     angle: 25
     length: 5
     boxX: 35
