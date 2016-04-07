@@ -5,6 +5,8 @@ public class firstAidBag : MonoBehaviour {
 
 	private sequenceManager _sequenceManager;
 	public AudioSource _sfx;
+	public GameObject ParticleSuccess;
+	public GameObject ParticleSpawn;
 
 
 	void Start () {
@@ -22,6 +24,7 @@ public class firstAidBag : MonoBehaviour {
 			Destroy (collision.gameObject);
 			_sequenceManager.NewItemCollected(collision.gameObject.name);
 			_sfx.Play ();
+			Instantiate (ParticleSuccess,ParticleSpawn.transform.position, Quaternion.identity);
 		}
 	}
 }

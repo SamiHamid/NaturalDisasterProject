@@ -17,6 +17,10 @@ public class EarthquakeController : MonoBehaviour {
 	private float _shakeStartTime;
 	public float _shakeDuration;
 
+	// Particle Effects (Sami)
+
+	public GameObject DustBits;
+	public GameObject DustThick;
 
 
 	void Start () {
@@ -41,8 +45,10 @@ public class EarthquakeController : MonoBehaviour {
 	
 
 	void Update () {
-		if (_shakeCamera) {
+		if (_shakeCamera) 
+		{
 			ShakeCamera();
+			Debug.Log("CAMERA SHAKING");
 		}
 	}
 
@@ -58,6 +64,7 @@ public class EarthquakeController : MonoBehaviour {
 
 		if (Time.time > _shakeStartTime + _shakeDuration) {
 			_shakeCamera = false;
+
 		}
 	}
 
@@ -74,7 +81,10 @@ public class EarthquakeController : MonoBehaviour {
 
 
 		//
-		// Sami, you can add in most of your effects here.
+		DustBits.SetActive(true);
+		DustThick.SetActive(true);
+
+
 		// 
 	}
 

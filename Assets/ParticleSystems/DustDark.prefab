@@ -24,7 +24,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 145378}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -10.091, y: 1.45, z: 0.06999999}
+  m_LocalPosition: {x: -9.91086, y: 2.493, z: 0.361}
   m_LocalScale: {x: 1, y: 0.8111247, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -367,8 +367,8 @@ ParticleSystem:
     radius: 0.3
     angle: 6.5956717
     length: 5
-    boxX: 11.164673
-    boxY: 15
+    boxX: 6.2387996
+    boxY: 9.511583
     boxZ: 5
     arc: 360
     placementMode: 0
