@@ -43,7 +43,7 @@ public class EarthquakeController : MonoBehaviour {
 
 		// Find the active camera in the scene.
 		if (GameObject.Find("[CameraRig]")) {
-			_cameraToShake = GameObject.Find("[CameraRig]/Camera (head)").transform;
+			_cameraToShake = GameObject.Find("[CameraRig]").transform;
 		} else {
 			_cameraToShake = GameObject.Find("FPSController/FirstPersonCharacter").transform;
 		}
