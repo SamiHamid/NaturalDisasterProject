@@ -9,11 +9,11 @@ namespace NewtonVR.Example
 
         public Transform FirePoint;
 
-        public Vector3 BulletForce = new Vector3(0, 0, 500);
+        public Vector3 BulletForce = new Vector3(0, 0, 1000);
 
-        public override void UseButtonDown()
+        public override void UseButtonUp()
         {
-            base.UseButtonDown();
+            base.UseButtonUp();
 
             GameObject bullet = GameObject.Instantiate(BulletPrefab);
             bullet.transform.position = FirePoint.position;
