@@ -54,7 +54,7 @@ public class EarthquakeController : MonoBehaviour {
 		if (_shakeCamera) 
 		{
 			ShakeCamera();
-			Debug.Log("CAMERA SHAKING");
+			//Debug.Log("CAMERA SHAKING");
 		}
 	}
 

@@ -18,14 +18,23 @@ public class sequenceManager : MonoBehaviour {
 	private AudioSource _tvAudioSource;
 	public AudioClip warning;
 	public AudioClip intro;
+	public AudioClip rollBandage;
 	public AudioClip alcoholWipes;
 	public AudioClip bandages;
 	public AudioClip firstAidBook;
 	public AudioClip gasMask;
-	public AudioClip rollBandage;
 	public AudioClip safetyPin;
 	public AudioClip scissors;
 	public AudioClip triangularBandage;
+
+	public AudioClip hammerIntro;
+	public AudioClip target1done;
+	public AudioClip target2done;
+	public AudioClip getUnderTable;
+
+
+	// New Order: roll, alc, cpr v, manual, band, tri, pins, scissors
+
 
 	// Textures for the TV
 	public Material alcoholWipesImg;
@@ -56,7 +65,7 @@ public class sequenceManager : MonoBehaviour {
 		_hammerTarget2 = GameObject.Find("Hammer Target 2");
 		_hammerTarget3 = GameObject.Find("Hammer Target 3");
 		_hammerTarget4 = GameObject.Find("Hammer Target 4");
-		//_hammerTarget1.SetActive(false);						leave this coded-out until hammering is properly part of the sequence
+		_hammerTarget1.SetActive(false);			
 		_hammerTarget2.SetActive(false);
 		_hammerTarget3.SetActive(false);
 		_hammerTarget4.SetActive(false);
@@ -117,10 +126,13 @@ public class sequenceManager : MonoBehaviour {
 
 	IEnumerator Intro () {
 		_tvText.text = "WARNING!";
+		/*
 		yield return new WaitForSeconds(1);
 		_tvAudioSource.clip = warning;
 		_tvAudioSource.Play();
 		yield return new WaitForSeconds(warning.length);
+		*/
+		yield return new WaitForSeconds(2); //just a pause at the beginning
 		_tvAudioSource.clip = intro;
 		_tvAudioSource.Play();
 		yield return new WaitForSeconds(intro.length);
@@ -194,6 +206,9 @@ public class sequenceManager : MonoBehaviour {
 	IEnumerator DropCoverHold () {
 		_tvText.text = "";
 		_tvImage.material = dropCoverHoldImg;
+		_tvAudioSource.clip = getUnderTable;  // use the longer clip with "get under... hold on... hold on..."
+		_tvAudioSource.Play();
+		yield return new WaitForSeconds(5);
 		_earthquakeController.StartQuake();
 		yield return null;
 	}
@@ -202,9 +217,13 @@ public class sequenceManager : MonoBehaviour {
 		if (nextTarget == 2) {
 			_hammerTarget1.SetActive(false);
 			_hammerTarget2.SetActive(true);
+			_tvAudioSource.clip = target1done;
+			_tvAudioSource.Play();
 		} else if (nextTarget == 3) {
 			_hammerTarget2.SetActive(false);
 			_hammerTarget3.SetActive(true);
+			_tvAudioSource.clip = target2done;
+			_tvAudioSource.Play();
 		} else if (nextTarget == 4) {
 			_hammerTarget3.SetActive(false);
 			_hammerTarget4.SetActive(true);
@@ -212,4 +231,13 @@ public class sequenceManager : MonoBehaviour {
 			_hammerTarget4.SetActive(false);
 		}
 	}
+
+	IEnumerator HammerIntro () {
+		_tvAudioSource.clip = hammerIntro;
+		_tvAudioSource.Play();
+		_hammerTarget1.SetActive(true);
+		yield return null;
+	}
+
+
 }
