@@ -172,7 +172,7 @@ public class sequenceManager : MonoBehaviour {
 	}
 
 	IEnumerator PackGasMask () {
-		_tvText.text = "gas mask";
+		_tvText.text = "ventilator";
 		_tvImage.material = gasMaskImg;
 		yield return new WaitForSeconds(1);
 		_tvAudioSource.clip = gasMask;
@@ -188,7 +188,7 @@ public class sequenceManager : MonoBehaviour {
 	}
 
 	IEnumerator PackSafetyPin () {
-		_tvText.text = "safety pin";
+		_tvText.text = "safety pins";
 		_tvImage.material = safetyPinImg;
 		yield return new WaitForSeconds(1);
 		_tvAudioSource.clip = safetyPin;
