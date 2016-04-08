@@ -13,7 +13,7 @@ public class sequenceManager : MonoBehaviour {
 	private bool _checkItem;
 	private string _itemName;
     private EarthquakeController _earthquakeController;
-	private string _hammerOrBracket = "bracket" ;
+
 
 	// Audio for the TV
 	private AudioSource _tvAudioSource;
@@ -105,7 +105,7 @@ public class sequenceManager : MonoBehaviour {
 			if (_tvText.text == _itemName) {
 				if (GameObject.Find("alcohol wipes")) {
 					StartCoroutine(PackAlcoholWipes());
-				} else if (GameObject.Find("first aid book")) {
+				} else if (GameObject.Find("first aid manual")) {
 					StartCoroutine(PackFirstAidBook());
 				} else if (GameObject.Find("gas mask")) {
 					StartCoroutine(PackGasMask());
@@ -189,9 +189,10 @@ public class sequenceManager : MonoBehaviour {
 	IEnumerator PackRollBandage () {
 		_tvText.text = "roll bandage";
 		_tvImage.material = rollBandageImg;
-		yield return new WaitForSeconds(1);
+		//yield return new WaitForSeconds(1);
 		_tvAudioSource.clip = rollBandage;
 		_tvAudioSource.Play();
+		yield return null;
 	}
 
 	IEnumerator PackSafetyPin () {
