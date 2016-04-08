@@ -6,6 +6,7 @@ TagManager:
   tags:
   - FirstAidItem
   - WrongItem
+  - HammerInteraction
   layers:
   - Default
   - TransparentFX

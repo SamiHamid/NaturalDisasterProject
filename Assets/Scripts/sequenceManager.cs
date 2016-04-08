@@ -13,6 +13,7 @@ public class sequenceManager : MonoBehaviour {
 	private bool _checkItem;
 	private string _itemName;
     private EarthquakeController _earthquakeController;
+	private string _hammerOrBracket = "bracket" ;
 
 	// Audio for the TV
 	private AudioSource _tvAudioSource;
@@ -27,9 +28,15 @@ public class sequenceManager : MonoBehaviour {
 	public AudioClip scissors;
 	public AudioClip triangularBandage;
 
+	// Audio for Hammer Sequence
 	public AudioClip hammerIntro;
 	public AudioClip target1done;
 	public AudioClip target2done;
+	public AudioClip topCorner;
+	public AudioClip bracket1done;
+	public AudioClip bracket2done;
+
+
 	public AudioClip getUnderTable;
 
 
@@ -221,30 +228,41 @@ public class sequenceManager : MonoBehaviour {
 		yield return null;
 	}
 		
-	public void NextHammerTarget (int nextTarget) {
-		if (nextTarget == 2) {
-			_hammerTarget1.SetActive(false);
+	public void NextHammerTarget (int nextStep) {
+		if (nextStep == 2) {
+			// HAMMER TARGET
+			_hammerTarget1.SetActive(false);		
 			_hammerTarget2.SetActive(true);
-			_tvAudioSource.clip = target1done;
+			_tvAudioSource.clip = bracket1done;
 			_tvAudioSource.Play();
-		} else if (nextTarget == 3) {
+		} else if (nextStep == 3) {
+			// BRACKET TARGET
 			_hammerTarget2.SetActive(false);
 			_hammerTarget3.SetActive(true);
-			_tvAudioSource.clip = target2done;
+			_tvAudioSource.clip = target1done;
 			_tvAudioSource.Play();
-		} else if (nextTarget == 4) {
+		} else if (nextStep == 4) {
+			// HAMMER TARGET
 			_hammerTarget3.SetActive(false);
 			_hammerTarget4.SetActive(true);
-		} else if (nextTarget == 5) {
+			_tvAudioSource.clip = bracket2done;
+			_tvAudioSource.Play();
+		} else if (nextStep == 5) {
+			// SECURING FINISHED
+			// START QUAKE
 			_hammerTarget4.SetActive(false);
-		}
+			_tvAudioSource.clip = target2done;
+			_tvAudioSource.Play();
+		} 
 	}
 
 	IEnumerator HammerIntro () {
 		_tvAudioSource.clip = hammerIntro;
 		_tvAudioSource.Play();
 		_hammerTarget1.SetActive(true);
-		yield return null;
+		yield return new WaitForSeconds(_tvAudioSource.clip.length);
+		_tvAudioSource.clip = topCorner;
+		_tvAudioSource.Play();
 	}
 
 
