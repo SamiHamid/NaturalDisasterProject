@@ -85,26 +85,31 @@ public class sequenceManager : MonoBehaviour {
             StopAllCoroutines();		//not sure if we need this or not
 			_earthquakeController.StartQuake();
 		}
+
+		if (Input.GetKeyDown(KeyCode.H)) {
+			StartCoroutine(HammerIntro());
+
+		}
 	} // end of Update()
 
 
 	void LateUpdate () {
 		if (_checkItem) {
 			if (_tvText.text == _itemName) {
-				if (GameObject.Find("bandages")) {
-					StartCoroutine(PackBandages());
+				if (GameObject.Find("alcohol wipes")) {
+					StartCoroutine(PackAlcoholWipes());
 				} else if (GameObject.Find("first aid book")) {
 					StartCoroutine(PackFirstAidBook());
 				} else if (GameObject.Find("gas mask")) {
 					StartCoroutine(PackGasMask());
-				} else if (GameObject.Find("roll bandage")) {
-					StartCoroutine(PackRollBandage());
+				} else if (GameObject.Find("bandages")) {
+					StartCoroutine(PackBandages());
+				} else if (GameObject.Find("triangular bandage")) {
+					StartCoroutine(PackTriangularBandage());
 				} else if (GameObject.Find("safety pin")) {
 					StartCoroutine(PackSafetyPin());
 				} else if (GameObject.Find("scissors")) {
 					StartCoroutine(PackScissors());
-				} else if (GameObject.Find("triangular bandage")) {
-					StartCoroutine(PackTriangularBandage());
 				}
 			}
 			_checkItem = false;
@@ -116,7 +121,10 @@ public class sequenceManager : MonoBehaviour {
 		_itemName = _itemNameImported;
 		_itemsCollected ++;
 		if (_itemsCollected >= _itemsTotal) {
-			StartCoroutine(DropCoverHold());
+			//StartCoroutine(DropCoverHold());
+
+			// start hammer sequence
+			StartCoroutine(HammerIntro());
 			return;
 		}
 		_checkItem = true;
@@ -125,7 +133,7 @@ public class sequenceManager : MonoBehaviour {
 
 
 	IEnumerator Intro () {
-		_tvText.text = "WARNING!";
+		//_tvText.text = "WARNING!";
 		/*
 		yield return new WaitForSeconds(1);
 		_tvAudioSource.clip = warning;
@@ -136,7 +144,7 @@ public class sequenceManager : MonoBehaviour {
 		_tvAudioSource.clip = intro;
 		_tvAudioSource.Play();
 		yield return new WaitForSeconds(intro.length);
-		StartCoroutine(PackAlcoholWipes());
+		StartCoroutine(PackRollBandage());
 	}
 		
 	IEnumerator PackAlcoholWipes () {
