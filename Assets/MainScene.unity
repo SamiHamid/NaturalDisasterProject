@@ -7387,7 +7387,7 @@ Transform:
   m_PrefabParentObject: {fileID: 423470, guid: 53919a2183b5b12459a5ecf8060f4782, type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 532717310}
-  m_LocalRotation: {x: 0.33738536, y: 0.27072427, z: 0.5927177, w: 0.6793859}
+  m_LocalRotation: {x: 0.3373854, y: 0.2707243, z: 0.59271777, w: 0.67938596}
   m_LocalPosition: {x: 5.556, y: -0.265, z: 3.163}
   m_LocalScale: {x: 0.10723929, y: 0.09851372, z: 0.077423885}
   m_Children: []
@@ -21937,6 +21937,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   warning: {fileID: 8300000, guid: f9dd57630a00846c28e2aefa4a50e214, type: 3}
   intro: {fileID: 8300000, guid: c7e96fb6b689e4a469a37f6b0c036381, type: 3}
+  introPreTime: {fileID: 8300000, guid: 0a13212fdde5441ad827407b2ea9ff45, type: 3}
+  introTime: {fileID: 8300000, guid: d7f23f8db6b8f4d6c97571a56dfdf6cb, type: 3}
+  introPostTime: {fileID: 8300000, guid: 358608b1edc24468b8fe54d70551dc23, type: 3}
   rollBandage: {fileID: 8300000, guid: 672d913f9f3174876a2008a3000c834e, type: 3}
   alcoholWipes: {fileID: 8300000, guid: 53694f770e7424ae5b59346c57a7cbf9, type: 3}
   bandages: {fileID: 8300000, guid: b1cf893f2acfb498db06c7f86ea20625, type: 3}

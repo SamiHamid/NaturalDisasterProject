@@ -15,6 +15,7 @@ public class sequenceManager : MonoBehaviour {
 	private bool _checkItem;
 	private string _itemName;
     private EarthquakeController _earthquakeController;
+	private Transform _timerRenderer;
 
 
 	// Audio for the TV
@@ -82,6 +83,11 @@ public class sequenceManager : MonoBehaviour {
 		_hammerTarget2.SetActive(false);
 		_hammerTarget3.SetActive(false);
 		_hammerTarget4.SetActive(false);
+
+		//_timerRenderer = GameObject.Find("Timer Text").GetComponent<Renderer>();
+		_timerRenderer = GameObject.Find("Timer Text").GetComponent<Transform>();
+		Debug.Log("timerR = " + _timerRenderer);
+		_timerRenderer.gameObject.SetActive(false);
 
 		// Begin the game sequence
 		StartCoroutine(Intro());
@@ -153,6 +159,7 @@ public class sequenceManager : MonoBehaviour {
 		_timerStart = Time.time;
 		_tvAudioSource.clip = introTime;
 		_tvAudioSource.Play();
+		_timerRenderer.gameObject.SetActive(true);
 		yield return new WaitForSeconds(introTime.length);
 		_tvAudioSource.clip = introPostTime;
 		_tvAudioSource.Play();

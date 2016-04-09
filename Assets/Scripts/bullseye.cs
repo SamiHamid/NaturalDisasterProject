@@ -15,7 +15,7 @@ public class bullseye : MonoBehaviour {
 		ring2 = transform.Find("rings/red ring (1)");
 		ring2.gameObject.SetActive(false);
 		StartCoroutine(Activate2ndRing());
-		Debug.Log("ring2 = " + ring2);
+		//Debug.Log("ring2 = " + ring2);
 		sequenceManager = GameObject.Find("Sequence Manager").GetComponent<sequenceManager>();
 	}
 	
@@ -25,9 +25,9 @@ public class bullseye : MonoBehaviour {
 	}
 
 	IEnumerator Activate2ndRing () {
-		Debug.Log("activate 2nd ring now");
+		//Debug.Log("activate 2nd ring now");
 		yield return new WaitForSeconds(delay);
-		Debug.Log("activate 2nd ring");
+		//Debug.Log("activate 2nd ring");
 		ring2.gameObject.SetActive(true);
 	}
 
