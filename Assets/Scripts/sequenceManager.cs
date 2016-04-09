@@ -17,8 +17,9 @@ public class sequenceManager : MonoBehaviour {
     private EarthquakeController _earthquakeController;
 	private Transform _timerRenderer;
 	public bool _quakeHasStarted;				//may not need to be pulic
+	private GameObject _underTableBullseye;
 
-	// Audio for the TV
+	// Audio for  TV
 	private AudioSource _tvAudioSource;
 	public AudioClip warning;
 	public AudioClip intro;
@@ -35,6 +36,10 @@ public class sequenceManager : MonoBehaviour {
 	public AudioClip scissors;
 	public AudioClip triangularBandage;
 
+	public AudioClip getUnderTable;
+	// end of Audio for TV
+
+
 	// Audio for Hammer Sequence
 	public AudioClip hammerIntro;
 	public AudioClip target1done;
@@ -44,13 +49,8 @@ public class sequenceManager : MonoBehaviour {
 	public AudioClip bracket2done;
 
 
-	public AudioClip getUnderTable;
-
-
-	// New Order: roll, alc, cpr v, manual, band, tri, pins, scissors
-
-
 	// Textures for the TV
+	// New Order: roll, alc, cpr v, manual, band, tri, pins, scissors
 	public Material alcoholWipesImg;
 	public Material bandagesImg;
 	public Material firstAidBookImg;
@@ -86,6 +86,9 @@ public class sequenceManager : MonoBehaviour {
 		_hammerTarget3.SetActive(false);
 		_hammerTarget4.SetActive(false);
 
+		_underTableBullseye = GameObject.Find("Under Table Bullseye");
+		_underTableBullseye.SetActive(false);
+
 		//_timerRenderer = GameObject.Find("Timer Text").GetComponent<Renderer>();
 		_timerRenderer = GameObject.Find("Timer Text").GetComponent<Transform>();
 		Debug.Log("timerR = " + _timerRenderer);
@@ -114,6 +117,7 @@ public class sequenceManager : MonoBehaviour {
 		if (Input.GetKeyDown(KeyCode.Space))
 		{
             StopAllCoroutines();		//Mert says we need this
+			StartCoroutine(DropCoverHold());
 			_earthquakeController.StartQuake();
 		}
 
@@ -243,17 +247,17 @@ public class sequenceManager : MonoBehaviour {
 		_tvAudioSource.Play();
 	}
 
-	/*
+
 	IEnumerator DropCoverHold () {
 		_tvText.text = "";
 		_tvImage.material = dropCoverHoldImg;
 		_tvAudioSource.clip = getUnderTable;  // use the longer clip with "get under... hold on... hold on..."
 		_tvAudioSource.Play();
+		_underTableBullseye.SetActive(true);
 		//yield return new WaitForSeconds(5);
-		_earthquakeController.StartQuake();
+		//_earthquakeController.StartQuake();
 		yield return null;
 	}
-	*/
 		
 	public void NextHammerTarget (int nextStep) {
 		if (nextStep == 2) {
