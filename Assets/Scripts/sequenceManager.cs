@@ -243,6 +243,7 @@ public class sequenceManager : MonoBehaviour {
 		_tvAudioSource.Play();
 	}
 
+	/*
 	IEnumerator DropCoverHold () {
 		_tvText.text = "";
 		_tvImage.material = dropCoverHoldImg;
@@ -252,6 +253,7 @@ public class sequenceManager : MonoBehaviour {
 		_earthquakeController.StartQuake();
 		yield return null;
 	}
+	*/
 		
 	public void NextHammerTarget (int nextStep) {
 		if (nextStep == 2) {
