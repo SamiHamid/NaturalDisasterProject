@@ -7,11 +7,16 @@ ModelImporter:
   fileIDToRecycleName:
     100000: pCylinder16
     100002: //RootNode
+    100004: pCylinder18
     400000: pCylinder16
     400002: //RootNode
+    400004: pCylinder18
     2300000: pCylinder16
+    2300002: pCylinder18
     3300000: pCylinder16
+    3300002: pCylinder18
     4300000: pCylinder16
+    4300002: pCylinder18
   materials:
     importMaterials: 1
     materialName: 0
