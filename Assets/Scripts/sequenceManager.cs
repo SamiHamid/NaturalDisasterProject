@@ -284,6 +284,7 @@ public class sequenceManager : MonoBehaviour {
 
 	IEnumerator HammerIntro () {
 		_tvImage.material = lBracket;
+		_tvText.text = "";
 		_tvAudioSource.clip = hammerIntro;
 		_tvAudioSource.Play();
 		_hammerTarget1.SetActive(true);
