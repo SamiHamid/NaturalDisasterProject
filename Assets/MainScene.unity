@@ -21937,6 +21937,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _quakeHasStarted: 0
+  _circleUnderTable: {fileID: 0}
   warning: {fileID: 8300000, guid: f9dd57630a00846c28e2aefa4a50e214, type: 3}
   intro: {fileID: 8300000, guid: c7e96fb6b689e4a469a37f6b0c036381, type: 3}
   introPreTime: {fileID: 8300000, guid: 0a13212fdde5441ad827407b2ea9ff45, type: 3}
@@ -21950,13 +21951,14 @@ MonoBehaviour:
   safetyPin: {fileID: 8300000, guid: 1e4c1b69ea913422095db3d4a5adfc30, type: 3}
   scissors: {fileID: 8300000, guid: 1d588a0c851df4e38803658aa9536106, type: 3}
   triangularBandage: {fileID: 8300000, guid: 4063863ff6a4b4757820d98171d92880, type: 3}
+  getUnderTable: {fileID: 8300000, guid: 6180e7a3847c04a9d987cecf89693207, type: 3}
+  holdOn: {fileID: 8300000, guid: d7274c6887aa64e77aaba0d5b289e983, type: 3}
   hammerIntro: {fileID: 8300000, guid: a688c8de38fec4796968f76720fef588, type: 3}
   target1done: {fileID: 8300000, guid: 6442207129f734b11915899fed968de2, type: 3}
   target2done: {fileID: 8300000, guid: e9eb7d5f19edc415da8c175c3e885bc1, type: 3}
   topCorner: {fileID: 8300000, guid: ddd788fd772dd4e6d815064832bc65e9, type: 3}
   bracket1done: {fileID: 0}
   bracket2done: {fileID: 0}
-  getUnderTable: {fileID: 8300000, guid: 6180e7a3847c04a9d987cecf89693207, type: 3}
   alcoholWipesImg: {fileID: 2100000, guid: 6ed31ba5e90f04f1b8802f4bc364ec45, type: 2}
   bandagesImg: {fileID: 2100000, guid: d3ba2128955a346b4992cce04881dad1, type: 2}
   firstAidBookImg: {fileID: 2100000, guid: 76d5ea2c3907f412d9a052ca63d39b8f, type: 2}
@@ -26467,6 +26469,72 @@ Transform:
   - {fileID: 1378434609}
   m_Father: {fileID: 1970292295}
   m_RootOrder: 42
+--- !u!1001 &2114468302
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 451406, guid: a78549ad3d65b491e9195c4f8bd9de5d, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -9.871
+      objectReference: {fileID: 0}
+    - target: {fileID: 451406, guid: a78549ad3d65b491e9195c4f8bd9de5d, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 1.271
+      objectReference: {fileID: 0}
+    - target: {fileID: 451406, guid: a78549ad3d65b491e9195c4f8bd9de5d, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0.905
+      objectReference: {fileID: 0}
+    - target: {fileID: 451406, guid: a78549ad3d65b491e9195c4f8bd9de5d, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 451406, guid: a78549ad3d65b491e9195c4f8bd9de5d, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 451406, guid: a78549ad3d65b491e9195c4f8bd9de5d, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 451406, guid: a78549ad3d65b491e9195c4f8bd9de5d, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071067
+      objectReference: {fileID: 0}
+    - target: {fileID: 451406, guid: a78549ad3d65b491e9195c4f8bd9de5d, type: 2}
+      propertyPath: m_RootOrder
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 173620, guid: a78549ad3d65b491e9195c4f8bd9de5d, type: 2}
+      propertyPath: m_Name
+      value: Circle Under Table
+      objectReference: {fileID: 0}
+    - target: {fileID: 11410106, guid: a78549ad3d65b491e9195c4f8bd9de5d, type: 2}
+      propertyPath: nextTarget
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 9585472, guid: a78549ad3d65b491e9195c4f8bd9de5d, type: 2}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: a712cfb3caeaa40b09f63bf3a5c5bf0b, type: 2}
+    - target: {fileID: 11410106, guid: a78549ad3d65b491e9195c4f8bd9de5d, type: 2}
+      propertyPath: nextStep
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9505938, guid: a78549ad3d65b491e9195c4f8bd9de5d, type: 2}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: a712cfb3caeaa40b09f63bf3a5c5bf0b, type: 2}
+    - target: {fileID: 11410106, guid: a78549ad3d65b491e9195c4f8bd9de5d, type: 2}
+      propertyPath: _hammerOrBracket
+      value: hammer
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: a78549ad3d65b491e9195c4f8bd9de5d, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &2115014644
 GameObject:
   m_ObjectHideFlags: 0

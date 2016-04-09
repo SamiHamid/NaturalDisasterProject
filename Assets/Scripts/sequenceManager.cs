@@ -17,6 +17,7 @@ public class sequenceManager : MonoBehaviour {
     private EarthquakeController _earthquakeController;
 	private Transform _timerRenderer;
 	public bool _quakeHasStarted;				//may not need to be pulic
+	public GameObject _circleUnderTable;
 
 	// Audio for the TV
 	private AudioSource _tvAudioSource;
@@ -35,6 +36,10 @@ public class sequenceManager : MonoBehaviour {
 	public AudioClip scissors;
 	public AudioClip triangularBandage;
 
+	public AudioClip getUnderTable;
+	public AudioClip holdOn;
+	// end Audio for TV
+
 	// Audio for Hammer Sequence
 	public AudioClip hammerIntro;
 	public AudioClip target1done;
@@ -44,7 +49,7 @@ public class sequenceManager : MonoBehaviour {
 	public AudioClip bracket2done;
 
 
-	public AudioClip getUnderTable;
+
 
 
 	// New Order: roll, alc, cpr v, manual, band, tri, pins, scissors
@@ -86,6 +91,9 @@ public class sequenceManager : MonoBehaviour {
 		_hammerTarget3.SetActive(false);
 		_hammerTarget4.SetActive(false);
 
+		_circleUnderTable = GameObject.Find("Circle Under Table");
+		_circleUnderTable.SetActive(false);
+
 		//_timerRenderer = GameObject.Find("Timer Text").GetComponent<Renderer>();
 		_timerRenderer = GameObject.Find("Timer Text").GetComponent<Transform>();
 		Debug.Log("timerR = " + _timerRenderer);
@@ -103,7 +111,7 @@ public class sequenceManager : MonoBehaviour {
 		if (_timeRemaining < 0 && _quakeHasStarted == false) {
 			_quakeHasStarted = true;
 			StopAllCoroutines();		//Mert says we need this
-			_earthquakeController.StartQuake();
+			StartCoroutine(DropCoverHold());
 			// hide TV timer
 			_timerRenderer.gameObject.SetActive(false);
 		}
@@ -114,13 +122,12 @@ public class sequenceManager : MonoBehaviour {
 		if (Input.GetKeyDown(KeyCode.Space))
 		{
             StopAllCoroutines();		//Mert says we need this
-			_earthquakeController.StartQuake();
+			StartCoroutine(DropCoverHold());
 		}
 
 		if (Input.GetKeyDown(KeyCode.H)) {
 			StopAllCoroutines();
 			StartCoroutine(HammerIntro());
-
 		}
 	} // end of Update()
 
@@ -246,10 +253,14 @@ public class sequenceManager : MonoBehaviour {
 	IEnumerator DropCoverHold () {
 		_tvText.text = "";
 		_tvImage.material = dropCoverHoldImg;
+		_circleUnderTable.SetActive(true);
 		_tvAudioSource.clip = getUnderTable;  // use the longer clip with "get under... hold on... hold on..."
 		_tvAudioSource.Play();
 		//yield return new WaitForSeconds(5);
 		_earthquakeController.StartQuake();
+		yield return new WaitForSeconds(5);
+		_tvAudioSource.clip = holdOn;
+		_tvAudioSource.Play();
 		yield return null;
 	}
 		
