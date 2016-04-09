@@ -3781,7 +3781,7 @@ Transform:
   m_GameObject: {fileID: 144184517}
   m_LocalRotation: {x: 0, y: 0.28562477, z: 0.000000014901161, w: 0.9583416}
   m_LocalPosition: {x: -10.534, y: 2.359, z: 2.163}
-  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 125268113}
   - {fileID: 1879330673}
@@ -7387,7 +7387,7 @@ Transform:
   m_PrefabParentObject: {fileID: 423470, guid: 53919a2183b5b12459a5ecf8060f4782, type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 532717310}
-  m_LocalRotation: {x: 0.33738536, y: 0.27072427, z: 0.5927177, w: 0.6793859}
+  m_LocalRotation: {x: 0.3373854, y: 0.2707243, z: 0.59271777, w: 0.67938596}
   m_LocalPosition: {x: 5.556, y: -0.265, z: 3.163}
   m_LocalScale: {x: 0.10723929, y: 0.09851372, z: 0.077423885}
   m_Children: []
@@ -18873,7 +18873,7 @@ GameObject:
   - 114: {fileID: 1389625770}
   - 114: {fileID: 1389625769}
   m_Layer: 0
-  m_Name: L-bracket
+  m_Name: L-bracket (1)
   m_TagString: HammerInteraction
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18976,7 +18976,7 @@ MeshRenderer:
   m_GameObject: {fileID: 1389625762}
   m_Enabled: 1
   m_CastShadows: 1
-  m_ReceiveShadows: 0
+  m_ReceiveShadows: 1
   m_Materials:
   - {fileID: 2100000, guid: 09421ded751fa4fdfa9383f53496772b, type: 2}
   m_SubsetIndices: 
@@ -22161,11 +22161,7 @@ MonoBehaviour:
   scissorsImg: {fileID: 2100000, guid: d43e1eb6e4c764468976e36cadcc137b, type: 2}
   triangularBandageImg: {fileID: 2100000, guid: 38aa8b20263c841b9819998decbf68c1,
     type: 2}
-<<<<<<< HEAD
   lBracket: {fileID: 0}
-=======
-  lBracket: {fileID: 2100000, guid: 132f5df2fa7494ba78655e285fa5ca22, type: 2}
->>>>>>> origin/master
   dropCoverHoldImg: {fileID: 2100000, guid: a04bbe69886f3420cbad9496aab2c22a, type: 2}
 --- !u!1001 &1768104036
 Prefab:
@@ -22683,11 +22679,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 451406, guid: a78549ad3d65b491e9195c4f8bd9de5d, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 3.3114
+      value: 3.317
       objectReference: {fileID: 0}
     - target: {fileID: 451406, guid: a78549ad3d65b491e9195c4f8bd9de5d, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 2.4666
+      value: 2.571
       objectReference: {fileID: 0}
     - target: {fileID: 451406, guid: a78549ad3d65b491e9195c4f8bd9de5d, type: 2}
       propertyPath: m_LocalRotation.x
@@ -22728,10 +22724,6 @@ Prefab:
     - target: {fileID: 11410106, guid: a78549ad3d65b491e9195c4f8bd9de5d, type: 2}
       propertyPath: _hammerOrBracket
       value: hammer
-      objectReference: {fileID: 0}
-    - target: {fileID: 11410106, guid: a78549ad3d65b491e9195c4f8bd9de5d, type: 2}
-      propertyPath: nextStep
-      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a78549ad3d65b491e9195c4f8bd9de5d, type: 2}
@@ -25064,11 +25056,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 451406, guid: a78549ad3d65b491e9195c4f8bd9de5d, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 3.3143
+      value: 3.344
       objectReference: {fileID: 0}
     - target: {fileID: 451406, guid: a78549ad3d65b491e9195c4f8bd9de5d, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 2.4676
+      value: 2.519
       objectReference: {fileID: 0}
     - target: {fileID: 451406, guid: a78549ad3d65b491e9195c4f8bd9de5d, type: 2}
       propertyPath: m_LocalRotation.x
@@ -25097,10 +25089,6 @@ Prefab:
     - target: {fileID: 11410106, guid: a78549ad3d65b491e9195c4f8bd9de5d, type: 2}
       propertyPath: nextTarget
       value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 11410106, guid: a78549ad3d65b491e9195c4f8bd9de5d, type: 2}
-      propertyPath: nextStep
-      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a78549ad3d65b491e9195c4f8bd9de5d, type: 2}

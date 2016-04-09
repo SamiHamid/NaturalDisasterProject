@@ -37,13 +37,7 @@ public class bullseye : MonoBehaviour {
 			if (_hammerOrBracket == "bracket" && collision.transform.name == "L-bracket") 			// objects in the scene must be NAMED "L-bracket".  Don't change their names!
 			{
 				collision.transform.GetComponent<AudioSource>().Play();
-				//collision.transform.position = new Vector3 (transform.position.x, transform.position.y, transform.position.z);
-				//collision.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
-				//
-				// make it non interactive with Vive-controller
-				//
-				sequenceManager.NextHammerTarget(nextStep);
-
+				sequenceManager.NextHammerTarget(nextStep);	
 			} else if (_hammerOrBracket == "hammer" && collision.transform.name == "Hammer") 
 			{
 				collision.transform.GetComponent<AudioSource>().Play();
