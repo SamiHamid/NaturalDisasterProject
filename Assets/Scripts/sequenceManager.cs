@@ -21,6 +21,10 @@ public class sequenceManager : MonoBehaviour {
 	private AudioSource _tvAudioSource;
 	public AudioClip warning;
 	public AudioClip intro;
+	public AudioClip introPreTime;
+	public AudioClip introTime;
+	public AudioClip introPostTime;
+
 	public AudioClip rollBandage;
 	public AudioClip alcoholWipes;
 	public AudioClip bandages;
@@ -92,7 +96,7 @@ public class sequenceManager : MonoBehaviour {
 
 		if (Input.GetKeyDown(KeyCode.Space))
 		{
-            StopAllCoroutines();		//not sure if we need this or not
+            StopAllCoroutines();		//Mert says we need this
 			_earthquakeController.StartQuake();
 		}
 
@@ -143,10 +147,16 @@ public class sequenceManager : MonoBehaviour {
 
 	IEnumerator Intro () {
 		yield return new WaitForSeconds(2); //just a pause at the beginning
-		_tvAudioSource.clip = intro;
+		_tvAudioSource.clip = introPreTime;
 		_tvAudioSource.Play();
-		yield return new WaitForSeconds(intro.length);
+		yield return new WaitForSeconds(introPreTime.length);
 		_timerStart = Time.time;
+		_tvAudioSource.clip = introTime;
+		_tvAudioSource.Play();
+		yield return new WaitForSeconds(introTime.length);
+		_tvAudioSource.clip = introPostTime;
+		_tvAudioSource.Play();
+		yield return new WaitForSeconds(introPostTime.length);
 		StartCoroutine(PackRollBandage());
 	}
 		
