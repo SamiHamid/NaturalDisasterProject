@@ -104,7 +104,10 @@ public class sequenceManager : MonoBehaviour {
 			_quakeHasStarted = true;
 			StopAllCoroutines();		//Mert says we need this
 			_earthquakeController.StartQuake();
+			// hide TV timer
+			_timerRenderer.gameObject.SetActive(false);
 		}
+			
 		_timeString = string.Format("{0:0}:{1:00}", Mathf.Floor(_timeRemaining/60), _timeRemaining % 60);
 		_timerText.text = _timeString;
 
