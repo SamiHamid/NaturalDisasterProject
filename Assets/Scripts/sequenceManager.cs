@@ -105,7 +105,6 @@ public class sequenceManager : MonoBehaviour {
 		Debug.Log("_timeR = " + _timeRemaining);
 		if (_timeRemaining < 0 && _quakeHasStarted == false) {
 			_quakeHasStarted = true;
-			_underTableBullseye.SetActive(true);
 			StopAllCoroutines();		//Mert says we need this
 			_earthquakeController.StartQuake();
 			// hide TV timer
