@@ -7,6 +7,8 @@ public class sequenceManager : MonoBehaviour {
 	private Text _tvText;
 	private Text _timerText;
 	private string _timeString;
+	private float _timerStart;
+	private float _timeRemaining;
 	private Renderer _tvImage;
 	private int _itemsTotal = 8;				// these 2 will not be necessary
 	private int _itemsCollected;			    // if timer is used to trigger next part of sequence (instead of completion of packing all items)
@@ -23,7 +25,7 @@ public class sequenceManager : MonoBehaviour {
 	public AudioClip alcoholWipes;
 	public AudioClip bandages;
 	public AudioClip firstAidBook;
-	public AudioClip gasMask;
+	public AudioClip ventilator;
 	public AudioClip safetyPin;
 	public AudioClip scissors;
 	public AudioClip triangularBandage;
@@ -47,7 +49,7 @@ public class sequenceManager : MonoBehaviour {
 	public Material alcoholWipesImg;
 	public Material bandagesImg;
 	public Material firstAidBookImg;
-	public Material gasMaskImg;
+	public Material ventilatorImg;
 	public Material rollBandageImg;
 	public Material safetyPinImg;
 	public Material scissorsImg;
@@ -84,7 +86,8 @@ public class sequenceManager : MonoBehaviour {
 
 	void Update () {
 		// update time on TV screen
-		_timeString = string.Format("{0:0}:{1:00}", Mathf.Floor(Time.time/60), Time.time % 60);
+		_timeRemaining = _timerStart + 179 - Time.time;
+		_timeString = string.Format("{0:0}:{1:00}", Mathf.Floor(_timeRemaining/60), _timeRemaining % 60);
 		_timerText.text = _timeString;
 
 		if (Input.GetKeyDown(KeyCode.Space))
@@ -94,6 +97,7 @@ public class sequenceManager : MonoBehaviour {
 		}
 
 		if (Input.GetKeyDown(KeyCode.H)) {
+			StopAllCoroutines();
 			StartCoroutine(HammerIntro());
 
 		}
@@ -107,13 +111,13 @@ public class sequenceManager : MonoBehaviour {
 					StartCoroutine(PackAlcoholWipes());
 				} else if (GameObject.Find("first aid manual")) {
 					StartCoroutine(PackFirstAidBook());
-				} else if (GameObject.Find("gas mask")) {
-					StartCoroutine(PackGasMask());
+				} else if (GameObject.Find("ventilator")) {
+					StartCoroutine(PackVentilator());
 				} else if (GameObject.Find("bandages")) {
 					StartCoroutine(PackBandages());
 				} else if (GameObject.Find("triangular bandage")) {
 					StartCoroutine(PackTriangularBandage());
-				} else if (GameObject.Find("safety pin")) {
+				} else if (GameObject.Find("safety pins")) {
 					StartCoroutine(PackSafetyPin());
 				} else if (GameObject.Find("scissors")) {
 					StartCoroutine(PackScissors());
@@ -128,8 +132,6 @@ public class sequenceManager : MonoBehaviour {
 		_itemName = _itemNameImported;
 		_itemsCollected ++;
 		if (_itemsCollected >= _itemsTotal) {
-			//StartCoroutine(DropCoverHold());
-
 			// start hammer sequence
 			StartCoroutine(HammerIntro());
 			return;
@@ -140,17 +142,11 @@ public class sequenceManager : MonoBehaviour {
 
 
 	IEnumerator Intro () {
-		//_tvText.text = "WARNING!";
-		/*
-		yield return new WaitForSeconds(1);
-		_tvAudioSource.clip = warning;
-		_tvAudioSource.Play();
-		yield return new WaitForSeconds(warning.length);
-		*/
 		yield return new WaitForSeconds(2); //just a pause at the beginning
 		_tvAudioSource.clip = intro;
 		_tvAudioSource.Play();
 		yield return new WaitForSeconds(intro.length);
+		_timerStart = Time.time;
 		StartCoroutine(PackRollBandage());
 	}
 		
@@ -171,18 +167,18 @@ public class sequenceManager : MonoBehaviour {
 	}
 
 	IEnumerator PackFirstAidBook () {
-		_tvText.text = "first aid book";
+		_tvText.text = "first aid manual";
 		_tvImage.material = firstAidBookImg;
 		yield return new WaitForSeconds(1);
 		_tvAudioSource.clip = firstAidBook;
 		_tvAudioSource.Play();
 	}
 
-	IEnumerator PackGasMask () {
+	IEnumerator PackVentilator () {
 		_tvText.text = "ventilator";
-		_tvImage.material = gasMaskImg;
+		_tvImage.material = ventilatorImg;
 		yield return new WaitForSeconds(1);
-		_tvAudioSource.clip = gasMask;
+		_tvAudioSource.clip = ventilator;
 		_tvAudioSource.Play();
 	}
 
@@ -224,7 +220,7 @@ public class sequenceManager : MonoBehaviour {
 		_tvImage.material = dropCoverHoldImg;
 		_tvAudioSource.clip = getUnderTable;  // use the longer clip with "get under... hold on... hold on..."
 		_tvAudioSource.Play();
-		yield return new WaitForSeconds(5);
+		//yield return new WaitForSeconds(5);
 		_earthquakeController.StartQuake();
 		yield return null;
 	}
@@ -254,6 +250,7 @@ public class sequenceManager : MonoBehaviour {
 			_hammerTarget4.SetActive(false);
 			_tvAudioSource.clip = target2done;
 			_tvAudioSource.Play();
+			// trigger start of quake?  or don't bother since it'll be timer based anyway?
 		} 
 	}
 
