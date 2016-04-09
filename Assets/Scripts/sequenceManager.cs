@@ -16,7 +16,7 @@ public class sequenceManager : MonoBehaviour {
 	private string _itemName;
     private EarthquakeController _earthquakeController;
 	private Transform _timerRenderer;
-
+	public bool _quakeHasStarted;				//may not need to be pulic
 
 	// Audio for the TV
 	private AudioSource _tvAudioSource;
@@ -59,7 +59,9 @@ public class sequenceManager : MonoBehaviour {
 	public Material safetyPinImg;
 	public Material scissorsImg;
 	public Material triangularBandageImg;
+	public Material lBracket;
 	public Material dropCoverHoldImg;
+
 
 	// Hammer Targets
 	private GameObject _hammerTarget1;
@@ -97,6 +99,12 @@ public class sequenceManager : MonoBehaviour {
 	void Update () {
 		// update time on TV screen
 		_timeRemaining = _timerStart + 179 - Time.time;
+		Debug.Log("_timeR = " + _timeRemaining);
+		if (_timeRemaining < 0 && _quakeHasStarted == false) {
+			_quakeHasStarted = true;
+			StopAllCoroutines();		//Mert says we need this
+			_earthquakeController.StartQuake();
+		}
 		_timeString = string.Format("{0:0}:{1:00}", Mathf.Floor(_timeRemaining/60), _timeRemaining % 60);
 		_timerText.text = _timeString;
 
@@ -272,6 +280,7 @@ public class sequenceManager : MonoBehaviour {
 	}
 
 	IEnumerator HammerIntro () {
+		_tvImage.material = lBracket;
 		_tvAudioSource.clip = hammerIntro;
 		_tvAudioSource.Play();
 		_hammerTarget1.SetActive(true);

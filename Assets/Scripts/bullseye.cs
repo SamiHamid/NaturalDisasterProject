@@ -34,7 +34,7 @@ public class bullseye : MonoBehaviour {
 	void OnCollisionEnter (Collision collision) {
 		if (collision.transform.tag == "HammerInteraction") 
 		{
-			if (_hammerOrBracket == "bracket" && collision.transform.name == "L-bracket") 
+			if (_hammerOrBracket == "bracket" && collision.transform.name == "L-bracket") 			// objects in the scene must be NAMED "L-bracket".  Don't change their names!
 			{
 				collision.transform.GetComponent<AudioSource>().Play();
 				sequenceManager.NextHammerTarget(nextStep);	
