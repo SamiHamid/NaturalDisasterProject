@@ -11,7 +11,8 @@ public class bullseye : MonoBehaviour {
 	public string _hammerOrBracket = "bracket" ;
 
 	// Use this for initialization
-	void Start () {
+	void Start () 
+	{
 		ring2 = transform.Find("rings/red ring (1)");
 		ring2.gameObject.SetActive(false);
 		StartCoroutine(Activate2ndRing());
